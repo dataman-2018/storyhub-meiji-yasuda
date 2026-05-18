@@ -1,0 +1,15 @@
+{
+  "functions": {
+    "api/site.js": {
+      "includeFiles": "{index.html,lp/index.html,deck/index.html,research/index.html,about/index.html}"
+    }
+  },
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/api/site"
+    }
+  ],
+  "cleanUrls": true,
+  "trailingSlash": false
+}

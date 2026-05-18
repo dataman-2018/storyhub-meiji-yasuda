@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>明治安田生命 × StoryHub リサーチ報告書</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0d1117;
+    --ink-2: #2d3748;
+    --ink-3: #5a6577;
+    --paper: #f7f8fa;
+    --card: #ffffff;
+    --teal: #00a08e;
+    --teal-light: #e6f7f5;
+    --teal-pale: #f0faf8;
+    --navy: #1a2744;
+    --rust: #c04a28;
+    --gold: #a07830;
+    --blue: #2563a8;
+    --blue-light: #eef4fb;
+    --yellow: #fabf00;
+    --yellow-light: #fef9e7;
+    --rule: rgba(13,17,23,0.08);
+    --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 8px 24px rgba(0,0,0,0.04);
+    --shadow-lg: 0 4px 12px rgba(0,0,0,0.08), 0 24px 48px rgba(0,0,0,0.06);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: "Noto Sans JP", sans-serif; background: var(--paper); color: var(--ink); line-height: 1.8; font-size: 15px; -webkit-font-smoothing: antialiased; }
+
+  .hero { background: var(--ink); color: var(--paper); padding: 80px 24px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; top: -40%; left: -20%; width: 140%; height: 180%; background: radial-gradient(ellipse at 30% 50%, rgba(0,160,142,0.15) 0%, transparent 60%), radial-gradient(ellipse at 70% 30%, rgba(250,191,0,0.08) 0%, transparent 50%); pointer-events: none; }
+  .hero-inner { position: relative; max-width: 720px; margin: 0 auto; }
+  .hero-label { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(247,248,250,0.45); margin-bottom: 24px; }
+  .hero h1 { font-size: clamp(24px, 3.5vw, 38px); font-weight: 900; line-height: 1.35; margin-bottom: 16px; }
+  .hero h1 span { color: var(--teal); }
+  .hero-sub { font-size: 14px; color: rgba(247,248,250,0.6); max-width: 540px; margin: 0 auto; line-height: 1.7; }
+  .hero-date { margin-top: 32px; font-size: 12px; color: rgba(247,248,250,0.35); }
+
+  .wrap { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+  section { padding: 56px 0; }
+  section + section { border-top: 1px solid var(--rule); }
+
+  .toc { background: var(--card); border: 1px solid var(--rule); border-radius: 12px; padding: 32px 36px; margin: -40px auto 0; position: relative; z-index: 2; box-shadow: var(--shadow-lg); }
+  .toc h2 { font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 16px; }
+  .toc ol { list-style: none; counter-reset: toc; }
+  .toc li { counter-increment: toc; }
+  .toc li + li { margin-top: 6px; }
+  .toc a { text-decoration: none; color: var(--ink-2); font-size: 14px; font-weight: 500; display: flex; align-items: baseline; gap: 10px; padding: 6px 0; border-radius: 4px; transition: color 0.2s; }
+  .toc a:hover { color: var(--teal); }
+  .toc a::before { content: counter(toc, decimal-leading-zero); font-size: 12px; font-weight: 700; color: var(--teal); min-width: 22px; }
+
+  .sec-num { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--teal); font-weight: 700; margin-bottom: 8px; }
+  h2.sec-title { font-size: clamp(20px, 2.8vw, 28px); font-weight: 900; line-height: 1.3; margin-bottom: 8px; color: var(--navy); }
+  .sec-lead { font-size: 14px; color: var(--ink-3); margin-bottom: 32px; max-width: 640px; }
+
+  .exec-card { background: linear-gradient(135deg, var(--navy) 0%, #243b5e 100%); color: var(--paper); border-radius: 16px; padding: 40px 36px; box-shadow: var(--shadow-lg); margin-bottom: 32px; }
+  .exec-card h3 { font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(247,248,250,0.5); margin-bottom: 20px; }
+  .exec-card p { font-size: 14.5px; line-height: 2; color: rgba(247,248,250,0.88); }
+  .exec-card p + p { margin-top: 16px; }
+  .exec-card strong { color: #fff; font-weight: 700; }
+  .exec-card .highlight { color: var(--yellow); font-weight: 700; }
+
+  .stat-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 14px; margin: 28px 0; }
+  .stat-card { background: var(--card); border: 1px solid var(--rule); border-radius: 10px; padding: 20px 16px; text-align: center; box-shadow: var(--shadow); }
+  .stat-card .sv { font-size: 32px; font-weight: 900; color: var(--teal); line-height: 1.1; }
+  .stat-card .sl { font-size: 12px; color: var(--ink-3); margin-top: 6px; line-height: 1.5; }
+
+  .insight-box { background: var(--teal-pale); border-left: 3px solid var(--teal); border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 20px 0; }
+  .insight-box p { font-size: 13px; color: #0a6e61; font-weight: 500; line-height: 1.75; }
+  .insight-box.accent { background: var(--yellow-light); border-left-color: var(--yellow); }
+  .insight-box.accent p { color: #b8860b; }
+
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; margin: 24px 0; }
+  .g-card { background: var(--card); border: 1px solid var(--rule); border-radius: 12px; padding: 24px; box-shadow: var(--shadow); }
+  .g-card h4 { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+  .g-card p { font-size: 13px; color: var(--ink-3); line-height: 1.75; }
+  .g-card .tag { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.06em; padding: 2px 8px; border-radius: 4px; margin-bottom: 8px; }
+  .g-card .tag-teal { background: var(--teal-light); color: var(--teal); }
+  .g-card .tag-blue { background: var(--blue-light); color: var(--blue); }
+  .g-card .tag-gold { background: var(--yellow-light); color: #b8860b; }
+
+  .case-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin: 24px 0; }
+  .case-card { background: var(--card); border: 1px solid var(--rule); border-radius: 12px; padding: 24px; box-shadow: var(--shadow); }
+  .case-card h4 { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+  .case-card .case-co { font-size: 11px; color: var(--ink-3); margin-bottom: 10px; }
+  .case-card p { font-size: 13px; color: var(--ink-2); line-height: 1.75; }
+  .case-card .case-stat { font-size: 24px; font-weight: 900; color: var(--teal); margin: 8px 0; }
+
+  .risk-card { background: var(--yellow-light); border: 1px solid rgba(250,191,0,0.2); border-radius: 12px; padding: 24px; margin: 24px 0; }
+  .risk-card h4 { font-size: 14px; font-weight: 700; color: #b8860b; margin-bottom: 8px; }
+  .risk-card p { font-size: 13px; color: var(--ink-2); line-height: 1.75; }
+
+  .fit-table { width: 100%; border-collapse: collapse; margin: 24px 0; }
+  .fit-table th, .fit-table td { padding: 14px 16px; text-align: left; border-bottom: 1px solid var(--rule); font-size: 13px; line-height: 1.6; }
+  .fit-table th { background: var(--teal-pale); color: var(--navy); font-weight: 700; font-size: 12px; letter-spacing: 0.04em; }
+  .fit-table td:first-child { font-weight: 600; color: var(--navy); min-width: 160px; }
+
+  footer { text-align: center; padding: 40px 24px; font-size: 12px; color: var(--ink-3); border-top: 1px solid var(--rule); }
+  footer span { color: var(--teal); font-weight: 700; }
+
+  @media (max-width: 640px) { .stat-strip, .card-grid, .case-grid { grid-template-columns: 1fr; } .exec-card { padding: 24px 20px; } .fit-table { font-size: 12px; } }
+  @media print { .hero { padding: 40px 24px; } body { font-size: 11px; } }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-label">Research Report — StoryHub × 明治安田生命</div>
+    <h1>生命保険業界の<span>コンテンツ戦略</span><br>デジタル接点の再設計と<br>契約者エンゲージメント</h1>
+    <p class="hero-sub">国内生保市場約40兆円。「保険を超える」戦略が各社で加速する中、コンテンツによる契約者との関係構築が競争優位の鍵となる。</p>
+    <div class="hero-date">2026年5月 ・ StoryHub株式会社</div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="toc">
+    <h2>Contents</h2>
+    <ol>
+      <li><a href="#exec">エグゼクティブサマリー</a></li>
+      <li><a href="#market">業界概況</a></li>
+      <li><a href="#cx">契約者コミュニケーションの課題</a></li>
+      <li><a href="#cases">先進事例</a></li>
+      <li><a href="#meiji">明治安田生命の現状分析</a></li>
+      <li><a href="#fit">StoryHubとの接点仮説</a></li>
+      <li><a href="#impact">想定インパクト</a></li>
+    </ol>
+  </div>
+
+  <section id="exec">
+    <div class="sec-num">01</div>
+    <h2 class="sec-title">エグゼクティブサマリー</h2>
+
+    <div class="exec-card">
+      <h3>Executive Summary</h3>
+      <p>生命保険業界は「保険商品の提供」から<strong>「顧客のウェルビーイング全体の支援」</strong>へと構造転換の最中にある。明治安田は「MY Mutual Way 2030」で業界に先駆けてこの方向を宣言し、<span class="highlight">2大プロジェクト（みんなの健活・地元の元気）</span>で実行に移している。</p>
+      <p>しかし、この戦略的転換を<strong>「伝わるストーリー」として契約者・従業員・ステークホルダーに継続的に届ける仕組み</strong>が不在。テレビCMとイベントに依存した発信構造では、900万人の契約者との日常的な「対話」は実現できない。</p>
+      <p>StoryHubのStory OSは、健活コンテンツのパーソナライズ配信、営業現場のナレッジ共有、ESG/IRのストーリー化を統合する<strong>コンテンツ供給網</strong>として、この構造課題を解決する。</p>
+    </div>
+  </section>
+
+  <section id="market">
+    <div class="sec-num">02</div>
+    <h2 class="sec-title">業界概況</h2>
+    <p class="sec-lead">国内生命保険市場は約40兆円。4大生保を中心に「保険を超える」戦略が加速</p>
+
+    <div class="stat-strip">
+      <div class="stat-card"><div class="sv">~40兆円</div><div class="sl">国内生命保険<br>保険料等収入</div></div>
+      <div class="stat-card"><div class="sv">42社</div><div class="sl">国内生命保険<br>事業者数</div></div>
+      <div class="stat-card"><div class="sv">88.7%</div><div class="sl">世帯加入率<br>（依然高水準）</div></div>
+      <div class="stat-card"><div class="sv">~3,700万件</div><div class="sl">個人保険<br>新規契約件数/年</div></div>
+    </div>
+
+    <div class="card-grid">
+      <div class="g-card">
+        <h4>4大生保の競争軸の変化</h4>
+        <p>日本生命・第一生命・住友生命・明治安田の4社が、従来の「保険料率・保障内容」の競争から「顧客体験・ヘルスケア・デジタル」の競争へシフト。コンテンツ力が差別化要因に。</p>
+      </div>
+      <div class="g-card">
+        <h4>健康増進型保険の普及</h4>
+        <p>住友生命「Vitality」、明治安田「ベストスタイル 健康キャッシュバック」、第一生命「健診割」など。保険と健康行動を連動させ、継続的な顧客接点が経営課題に浮上。</p>
+      </div>
+      <div class="g-card">
+        <h4>Z世代の保険行動</h4>
+        <p>29歳以下は「企業HP」経由の保険加入率が全体平均の3.5倍（13.3% vs 3.8%）。デジタルコンテンツが購買導線になる時代。営業職員依存モデルからの転換が急務。</p>
+      </div>
+    </div>
+
+    <div class="insight-box">
+      <p><strong>構造変化の本質：</strong>生命保険は「万一の備え」から「日常の伴走者」へ。この転換を顧客に伝えるには、商品パンフレットではなく「ストーリー」が必要。</p>
+    </div>
+  </section>
+
+  <section id="cx">
+    <div class="sec-num">03</div>
+    <h2 class="sec-title">契約者コミュニケーションの課題</h2>
+    <p class="sec-lead">契約後の接点が「年1回」に留まる構造的問題</p>
+
+    <div class="card-grid">
+      <div class="g-card">
+        <div class="tag tag-teal">課題 1</div>
+        <h4>接点の希薄化</h4>
+        <p>契約後の接点は「年1回の契約内容確認」と「保険金請求時」がメイン。デジタル時代の顧客が求める日常的な価値提供ができていない。保有契約の解約率に直結する構造的リスク。</p>
+      </div>
+      <div class="g-card">
+        <div class="tag tag-teal">課題 2</div>
+        <h4>紙DM→デジタルの移行遅れ</h4>
+        <p>紙のDM・パンフレットが依然として主要チャネル。開封率・到達率の低下が続く中、デジタルコンテンツへの移行が遅れ、若年層への到達力が低下。</p>
+      </div>
+      <div class="g-card">
+        <div class="tag tag-teal">課題 3</div>
+        <h4>コンテンツの分断</h4>
+        <p>営業資料・Web・アプリ・CM・イベントが分断的に運用され、メッセージの一貫性が担保されない。各チャネルが独立してコンテンツを制作するため、非効率かつブランドがブレやすい。</p>
+      </div>
+    </div>
+
+    <div class="risk-card">
+      <h4>業界共通のリスク：AI活用とコンプライアンス</h4>
+      <p>保険業法・金融商品取引法の制約下で、AIによるコンテンツ生成には<strong>正確性・適合性の担保</strong>が不可欠。「AIが書いた保険の説明が不正確だった」は、企業存続に関わるリスク。ブランドメモリーによる表現ガバナンスが、業界特有の安全弁として機能する。</p>
+    </div>
+  </section>
+
+  <section id="cases">
+    <div class="sec-num">04</div>
+    <h2 class="sec-title">先進事例</h2>
+    <p class="sec-lead">国内外の保険・金融業界におけるコンテンツ戦略の先進事例</p>
+
+    <div class="case-grid">
+      <div class="case-card">
+        <h4>Lemonade（米国）</h4>
+        <div class="case-co">デジタルネイティブ保険</div>
+        <div class="case-stat">4.9★</div>
+        <p>コンテンツファーストの保険UXで急成長。ブログ・SNS・動画でZ世代の保険不信を解消し、アプリストア最高評価を維持。「保険の説明」ではなく「人生のストーリー」を軸にしたコミュニケーション。</p>
+      </div>
+      <div class="case-card">
+        <h4>John Hancock / Vitality</h4>
+        <div class="case-co">米国・健康増進型保険</div>
+        <div class="case-stat">2.5x</div>
+        <p>Vitalityプログラムと連動した健康コンテンツ配信で、契約者エンゲージメントが2.5倍に。ウェアラブル連携×パーソナライズコンテンツで「保険=日常」の接点を実現。</p>
+      </div>
+      <div class="case-card">
+        <h4>第一生命「ミラシル」</h4>
+        <div class="case-co">国内先行事例</div>
+        <div class="case-stat">月100万PV</div>
+        <p>「一生涯のパートナー」をコンセプトにした総合オウンドメディア。健康・マネー・子育て・介護のコンテンツで、保険の契約有無を問わず接点を創出。国内生保で最も先進的なコンテンツ戦略。</p>
+      </div>
+      <div class="case-card">
+        <h4>住友生命「Vitality」</h4>
+        <div class="case-co">国内・健康増進型保険</div>
+        <div class="case-stat">200万人</div>
+        <p>加入者200万人超の健康増進プログラム。アプリ内で健康コンテンツを配信し、行動変容を促進。データ蓄積による保険料の個別最適化まで実装済み。</p>
+      </div>
+    </div>
+
+    <div class="insight-box accent">
+      <p><strong>示唆：</strong>先進事例に共通するのは「保険商品の情報」ではなく「顧客の人生に役立つストーリー」を継続的に配信している点。明治安田は「みんなの健活」で素材は揃っているが、「継続配信の仕組み」が不足。</p>
+    </div>
+  </section>
+
+  <section id="meiji">
+    <div class="sec-num">05</div>
+    <h2 class="sec-title">明治安田生命の現状分析</h2>
+    <p class="sec-lead">「保険を超える」戦略と2大プロジェクトの現在地</p>
+
+    <div class="card-grid">
+      <div class="g-card">
+        <div class="tag tag-teal">強み</div>
+        <h4>みんなの健活プロジェクト</h4>
+        <p>健康チェックイベント、健活アプリ、AIによる健康アドバイスなど、業界でも先進的な健康増進施策。素材・活動は豊富だが、ストーリーとしての発信は断片的。</p>
+      </div>
+      <div class="g-card">
+        <div class="tag tag-teal">強み</div>
+        <h4>MYリンクコーディネーター</h4>
+        <p>36,000人超の営業職員による1to1の顧客接点。デジタル時代でも「対面の信頼」は最大の資産。この知見をデジタルコンテンツに転換できれば、採用広報とCXの両方に効く。</p>
+      </div>
+      <div class="g-card">
+        <div class="tag tag-gold">機会</div>
+        <h4>リブランディング</h4>
+        <p>2024年1月に「明治安田生命」→「明治安田」へ刷新。143年の歴史×「保険を超える」未来像を統合するナラティブ設計は、ブランド浸透の加速装置になり得る。</p>
+      </div>
+      <div class="g-card">
+        <div class="tag tag-gold">機会</div>
+        <h4>Jリーグタイトルパートナー</h4>
+        <p>J1/J2/J3全カテゴリのスポンサー。スタジアム×地域×健康のストーリーは「地元の元気プロジェクト」と直結。現状はイベント単発に留まるが、連続コンテンツ化のポテンシャルは大きい。</p>
+      </div>
+    </div>
+
+    <div class="stat-strip">
+      <div class="stat-card"><div class="sv">900万人</div><div class="sl">契約者<br>（最大の顧客資産）</div></div>
+      <div class="stat-card"><div class="sv">36,000人</div><div class="sl">営業職員<br>（最大の接点資産）</div></div>
+      <div class="stat-card"><div class="sv">~1,100</div><div class="sl">全国営業拠点<br>（地域密着ネットワーク）</div></div>
+      <div class="stat-card"><div class="sv">143年</div><div class="sl">創業年数<br>（日本初の生保）</div></div>
+    </div>
+
+    <div class="insight-box">
+      <p><strong>ギャップ：</strong>明治安田は「何をすべきか（戦略）」は明確。しかし「それをどう伝えるか（コンテンツ供給網）」の設計が追いついていない。2大プロジェクトの活動は豊富だが、ストーリーとして「届く」仕組みがない。これがStoryHub提案の核心的な論点。</p>
+    </div>
+  </section>
+
+  <section id="fit">
+    <div class="sec-num">06</div>
+    <h2 class="sec-title">StoryHubとの接点仮説</h2>
+    <p class="sec-lead">明治安田の課題とStoryHub Story OSの対応関係</p>
+
+    <table class="fit-table">
+      <thead>
+        <tr>
+          <th>明治安田の課題</th>
+          <th>Story OSの提供価値</th>
+          <th>該当プロダクト</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>契約者接点が「手続き」中心</td>
+          <td>健康・ライフプラン・資産形成のパーソナライズコンテンツを契約者アプリに配信。「手続き接点」を「価値接点」に転換</td>
+          <td>Feed + Insight</td>
+        </tr>
+        <tr>
+          <td>2大プロジェクトの発信が断片的</td>
+          <td>「健活」「地元の元気」をストーリーとして構造化。参加者の変化・地域の声・成果の裏側を連続コンテンツに</td>
+          <td>Studio + Interview</td>
+        </tr>
+        <tr>
+          <td>営業現場の知見が属人的</td>
+          <td>36,000人のMYリンクコーディネーターの成功事例をAIインタビューで収集・記事化。研修・採用広報に展開</td>
+          <td>Interview + Studio</td>
+        </tr>
+        <tr>
+          <td>リブランディングの浸透不足</td>
+          <td>ブランドメモリーに「新しい明治安田」のトーン・メッセージを格納。全チャネルで統一ブランド体験を自動担保</td>
+          <td>Brand Memory</td>
+        </tr>
+        <tr>
+          <td>保険業法上の表現リスク</td>
+          <td>AIエディターが保険用語の正確性・コンプライアンス適合性を自動チェック。人間の最終校閲と組み合わせ</td>
+          <td>Assessment</td>
+        </tr>
+        <tr>
+          <td>Z世代へのリーチ不足</td>
+          <td>デジタルコンテンツ経由の保険理解・行動促進。オウンドメディアの構築・運用を支援</td>
+          <td>Feed + Studio</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="insight-box accent">
+      <p><strong>提案の切り口（優先順位）：</strong>(1) 健活コンテンツのパーソナライズ配信PoC → (2) 契約者アプリへのFeed統合 → (3) 営業ナレッジの構造化 → (4) 全社コンテンツ基盤化。「健活」から始めることで、明治安田にとって最もわかりやすい成果を早期に実証できる。</p>
+    </div>
+  </section>
+
+  <section id="impact">
+    <div class="sec-num">07</div>
+    <h2 class="sec-title">想定インパクト</h2>
+    <p class="sec-lead">他業界の導入実績と業界ベンチマークからの試算</p>
+
+    <div class="stat-strip">
+      <div class="stat-card"><div class="sv">1/3</div><div class="sl">コンテンツ制作時間<br>の短縮（実績ベース）</div></div>
+      <div class="stat-card"><div class="sv">7x</div><div class="sl">コンテンツ本数<br>の増加（実績ベース）</div></div>
+      <div class="stat-card"><div class="sv">2-3x</div><div class="sl">アプリ利用頻度<br>の向上（業界ベンチマーク）</div></div>
+      <div class="stat-card"><div class="sv">85%</div><div class="sl">コンテンツ内製化率<br>（0%→85%実績）</div></div>
+    </div>
+
+    <div class="card-grid">
+      <div class="g-card">
+        <h4>CX向上効果</h4>
+        <p>契約者アプリへのコンテンツ配信により、アプリ利用頻度が2〜3倍に向上（John Hancock/Vitalityの実績参照）。健活参加率の向上が契約継続率に寄与する好循環を設計。</p>
+      </div>
+      <div class="g-card">
+        <h4>コスト効率</h4>
+        <p>制作時間1/3短縮、内製化率85%により、外注コストを大幅削減。StoryHub導入企業ではROI 2〜3倍を実現。年間数千本のコンテンツを安定供給可能に。</p>
+      </div>
+      <div class="g-card">
+        <h4>ブランド価値</h4>
+        <p>ブランドメモリーによる全チャネル統一管理で、「明治安田」ブランドの浸透スピードが加速。保険業法準拠チェックの自動化により、コンプライアンスリスクも低減。</p>
+      </div>
+    </div>
+
+    <div class="exec-card" style="margin-top:32px;">
+      <h3>Conclusion</h3>
+      <p>明治安田の「保険を超える」戦略は、<strong>コンテンツ供給網の構築</strong>によって初めて完成する。StoryHubのStory OSは、健活コンテンツから始めて段階的に全社基盤へ拡張する<span class="highlight">低リスク・高インパクトの導入パス</span>を提供する。</p>
+      <p>まずは「みんなの健活プロジェクト」のコンテンツ制作・配信で6週間のPoCを実施し、<strong>制作効率と契約者エンゲージメントへの効果を実証</strong>することを提案する。</p>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <span>StoryHub</span> &mdash; Research Report &mdash; Confidential &mdash; 2026-05
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StoryHub × 明治安田生命 LP</title>
+<meta name="description" content="StoryHubが明治安田生命様に提案する、保険の価値をストーリーで届けるStory OS構築提案LPです。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0d1117;
+    --ink-2: #2d3748;
+    --ink-3: #718096;
+    --paper: #f7f8fa;
+    --paper-2: #eef0f4;
+    --paper-3: #dde1e8;
+    --teal: #00a08e;
+    --teal-light: #e6f7f5;
+    --teal-mid: #2dbaa8;
+    --yellow: #fabf00;
+    --yellow-light: #fef9e7;
+    --navy: #1a2744;
+    --rust: #c04a28;
+    --blue: #2563a8;
+    --gold: #a07830;
+    --rule: rgba(13,17,23,0.08);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: "Noto Sans JP", sans-serif; background: var(--paper); color: var(--ink); font-size: 15px; line-height: 1.75; }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: var(--paper); border-bottom: 1px solid var(--rule); display: flex; align-items: center; justify-content: space-between; padding: 0 40px; height: 52px; }
+  .nav-logo { font-family: "DM Serif Display", serif; font-size: 17px; color: var(--ink); letter-spacing: 0.01em; text-decoration: none; }
+  .nav-links { display: flex; gap: 28px; }
+  .nav-links a { font-size: 12px; color: var(--ink-3); text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--ink); }
+  .page { min-height: 100vh; padding: 100px 0 80px; display: flex; flex-direction: column; justify-content: center; }
+  .container { max-width: 860px; margin: 0 auto; padding: 0 48px; width: 100%; }
+  .divider { width: 100%; height: 1px; background: var(--rule); margin: 0; }
+  .chap { font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
+  .chap::before { content: ""; display: block; width: 28px; height: 1px; background: var(--ink-3); }
+
+  #hero { background: var(--ink); color: var(--paper); min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 0 72px; position: relative; overflow: hidden; }
+  .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse at 80% 20%, rgba(0,160,142,0.12), transparent 50%), repeating-linear-gradient(0deg, transparent, transparent 79px, rgba(255,255,255,0.02) 80px), repeating-linear-gradient(90deg, transparent, transparent 79px, rgba(255,255,255,0.02) 80px); }
+  .hero-tag { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(247,248,250,0.4); margin-bottom: 32px; }
+  .hero-h1 { font-family: "DM Serif Display", serif; font-size: clamp(36px, 5vw, 58px); line-height: 1.15; color: var(--paper); max-width: 680px; margin-bottom: 28px; }
+  .hero-h1 em { font-style: italic; color: var(--teal-mid); }
+  .hero-lead { font-size: 14px; color: rgba(247,248,250,0.6); max-width: 520px; line-height: 1.8; border-left: 2px solid rgba(0,160,142,0.5); padding-left: 18px; }
+  .hero-meta { position: absolute; top: 52px; right: 48px; text-align: right; font-size: 12px; color: rgba(247,248,250,0.35); letter-spacing: 0.04em; }
+  .hero-portal { margin-top: 28px; display: inline-flex; color: rgba(247,248,250,0.8); text-decoration: none; font-size: 13px; border-bottom: 1px solid rgba(247,248,250,0.35); width: fit-content; }
+
+  .s-heading { font-family: "DM Serif Display", serif; font-size: clamp(26px, 3.5vw, 38px); line-height: 1.25; color: var(--ink); margin-bottom: 12px; }
+  .s-heading em { font-style: italic; color: var(--teal); }
+  .s-lead { font-size: 14px; color: var(--ink-2); max-width: 600px; line-height: 1.85; margin-bottom: 44px; }
+
+  #status { background: var(--paper); }
+  .stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 44px; }
+  .stat-card { background: var(--paper-2); border: 1px solid var(--paper-3); border-radius: 4px; padding: 28px 24px; }
+  .stat-num { font-family: "DM Serif Display", serif; font-size: 38px; color: var(--ink); line-height: 1; margin-bottom: 6px; }
+  .stat-label { font-size: 12px; color: var(--ink-3); letter-spacing: 0.04em; }
+  .insight-box { background: var(--teal-light); border-left: 3px solid var(--teal); border-radius: 0 4px 4px 0; padding: 20px 24px; font-size: 14px; color: #0a6e61; line-height: 1.8; }
+
+  #challenge { background: var(--paper-2); }
+  .challenge-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .c-card { background: var(--paper); border: 1px solid var(--paper-3); border-radius: 4px; padding: 28px 26px; }
+  .c-card-head { font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--rust); margin-bottom: 12px; }
+  .c-card-title { font-size: 16px; font-weight: 500; color: var(--ink); margin-bottom: 10px; line-height: 1.5; }
+  .c-card-body { font-size: 13px; color: var(--ink-2); line-height: 1.8; }
+
+  #value { background: var(--paper); }
+  .value-list { display: flex; flex-direction: column; gap: 1px; border: 1px solid var(--paper-3); border-radius: 4px; overflow: hidden; }
+  .v-row { display: grid; grid-template-columns: 48px 1fr 1.6fr; background: var(--paper-2); align-items: stretch; transition: background 0.2s; }
+  .v-row:hover { background: var(--paper); }
+  .v-num { display: flex; align-items: center; justify-content: center; font-family: "DM Serif Display", serif; font-size: 22px; color: var(--ink-3); border-right: 1px solid var(--paper-3); padding: 24px 0; }
+  .v-label { padding: 24px 24px 24px 20px; border-right: 1px solid var(--paper-3); display: flex; flex-direction: column; justify-content: center; }
+  .v-tag { font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; }
+  .v-tag.teal { color: var(--teal); }
+  .v-tag.blue { color: var(--blue); }
+  .v-tag.gold { color: var(--gold); }
+  .v-title { font-size: 14px; font-weight: 500; color: var(--ink); line-height: 1.5; }
+  .v-desc { padding: 24px; font-size: 13px; color: var(--ink-2); line-height: 1.85; display: flex; align-items: center; }
+  .value-outcome { margin-top: 32px; background: var(--ink); border-radius: 4px; padding: 28px 32px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
+  .vo-item { text-align: center; }
+  .vo-label { font-size: 11px; color: rgba(247,248,250,0.4); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
+  .vo-text { font-size: 13px; color: var(--paper); line-height: 1.6; }
+
+  #quality { background: var(--paper-2); }
+  .quality-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .q-card { background: var(--paper); border: 1px solid var(--paper-3); border-left: 3px solid var(--teal); border-radius: 4px; padding: 28px 26px; }
+  .q-card h4 { font-size: 14px; font-weight: 500; color: var(--navy); margin-bottom: 10px; }
+  .q-card p { font-size: 13px; color: var(--ink-2); line-height: 1.8; }
+
+  #poc { background: var(--paper); }
+  .poc-timeline { display: grid; grid-template-columns: repeat(5, 1fr); border: 1px solid var(--paper-3); border-radius: 4px; overflow: hidden; margin-bottom: 32px; }
+  .poc-step { padding: 22px 18px; background: var(--paper); border-right: 1px solid var(--paper-3); position: relative; }
+  .poc-step:last-child { border-right: none; }
+  .poc-wk { font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 8px; }
+  .poc-name { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; line-height: 1.4; }
+  .poc-desc { font-size: 11px; color: var(--ink-3); line-height: 1.6; }
+  .poc-arrow { position: absolute; right: -10px; top: 50%; transform: translateY(-50%); width: 20px; height: 20px; background: var(--paper-3); border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 1; font-size: 10px; color: var(--ink-3); }
+  .poc-meta { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  .pm-card { background: var(--paper-2); border: 1px solid var(--paper-3); border-radius: 4px; padding: 18px 20px; }
+  .pm-key { font-size: 11px; color: var(--ink-3); margin-bottom: 6px; }
+  .pm-val { font-size: 13px; color: var(--ink); line-height: 1.6; font-weight: 500; }
+
+  #roadmap { background: var(--paper-2); }
+  .rm-list { display: flex; flex-direction: column; gap: 16px; }
+  .rm-row { display: grid; grid-template-columns: 120px 1fr; border: 1px solid var(--paper-3); border-radius: 4px; overflow: hidden; }
+  .rm-phase { background: var(--paper); padding: 22px 20px; border-right: 1px solid var(--paper-3); display: flex; flex-direction: column; justify-content: center; align-items: flex-start; }
+  .rm-ph-tag { font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; }
+  .rm-ph-tag.p1 { color: var(--teal); }
+  .rm-ph-tag.p2 { color: var(--blue); }
+  .rm-ph-tag.p3 { color: var(--gold); }
+  .rm-ph-name { font-size: 14px; font-weight: 500; color: var(--ink); line-height: 1.4; }
+  .rm-body { padding: 22px 26px; background: white; }
+  .rm-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .rm-desc { font-size: 13px; color: var(--ink-2); line-height: 1.8; }
+
+  #closing { background: var(--ink); color: var(--paper); min-height: 60vh; display: flex; flex-direction: column; justify-content: center; }
+  #closing .chap { color: rgba(247,248,250,0.35); }
+  #closing .chap::before { background: rgba(247,248,250,0.35); }
+  .closing-q { font-family: "DM Serif Display", serif; font-size: clamp(20px, 3vw, 30px); line-height: 1.5; color: var(--paper); max-width: 680px; margin-bottom: 48px; }
+  .closing-q em { font-style: italic; color: var(--teal-mid); }
+  .q-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 48px; }
+  .q-item { display: flex; gap: 16px; align-items: flex-start; padding: 20px 24px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 4px; }
+  .q-badge { width: 26px; height: 26px; border-radius: 50%; background: rgba(0,160,142,0.2); border: 1px solid rgba(0,160,142,0.4); color: var(--teal-mid); font-size: 12px; font-weight: 500; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+  .q-text { font-size: 14px; color: rgba(247,248,250,0.85); line-height: 1.7; }
+  .q-hint { font-size: 12px; color: rgba(247,248,250,0.35); line-height: 1.6; margin-top: 4px; }
+  .next-steps { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+  .ns-card { padding: 20px 22px; border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; }
+  .ns-step { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(247,248,250,0.35); margin-bottom: 8px; }
+  .ns-name { font-size: 14px; font-weight: 500; color: var(--paper); }
+
+  footer { background: var(--ink); border-top: 1px solid rgba(255,255,255,0.08); padding: 32px 48px; display: flex; justify-content: space-between; align-items: center; }
+  .footer-brand { font-family: "DM Serif Display", serif; font-size: 16px; color: rgba(247,248,250,0.5); }
+  .footer-meta { font-size: 12px; color: rgba(247,248,250,0.3); text-align: right; }
+
+  @media (max-width: 680px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .container { padding: 0 24px; }
+    .stat-grid, .challenge-grid, .poc-meta, .next-steps, .value-outcome, .quality-grid { grid-template-columns: 1fr; }
+    .poc-timeline { grid-template-columns: 1fr; }
+    .v-row { grid-template-columns: 1fr; }
+    .v-num { display: none; }
+    .rm-row { grid-template-columns: 1fr; }
+    .rm-phase { border-right: none; border-bottom: 1px solid var(--paper-3); }
+  }
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="/">StoryHub</a>
+  <div class="nav-links">
+    <a href="/">Portal</a>
+    <a href="#status">現在地</a>
+    <a href="#challenge">課題</a>
+    <a href="#value">提供価値</a>
+    <a href="/deck">横長提案書</a>
+  </div>
+</nav>
+
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-meta">StoryHub株式会社<br>2026年5月</div>
+  <div class="container">
+    <p class="hero-tag">明治安田生命 × StoryHub 提案 LP</p>
+    <h1 class="hero-h1">保険の価値を、<br>ストーリーで<em>届ける。</em></h1>
+    <p class="hero-lead">
+      900万人の契約者、3万6千人の営業職員——<br>
+      「みんなの健活」「地元の元気」が生むストーリーを、<br>
+      制作・承認・配信・改善まで一気通貫で管理する<br>
+      「Story OS」をご提案します。
+    </p>
+    <a class="hero-portal" href="/">ポータルに戻る</a>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="status" class="page">
+  <div class="container">
+    <p class="chap">Chapter 1 — 明治安田の現在地</p>
+    <h2 class="s-heading">「保険を超える」宣言の先へ。<br>次の課題は<em>「ストーリー供給網」</em>。</h2>
+    <p class="s-lead">「ひとに健康を、まちに元気を。」——MY Mutual Way 2030のもと、生命保険の機能を超えた価値創造に挑む明治安田。2大プロジェクトは始動済み。次のフェーズの課題は、その取り組みを「伝わるストーリー」として継続的に届ける仕組みです。</p>
+    <div class="stat-grid">
+      <div class="stat-card"><div class="stat-num">900万人</div><div class="stat-label">個人保険・年金の契約者</div></div>
+      <div class="stat-card"><div class="stat-num">36,000人</div><div class="stat-label">MYリンクコーディネーター（営業職員）</div></div>
+      <div class="stat-card"><div class="stat-num">143年</div><div class="stat-label">1881年創業・日本初の生命保険会社</div></div>
+    </div>
+    <div class="insight-box">「みんなの健活プロジェクト」と「地元の元気プロジェクト」——2大プロジェクトの活動は豊富。しかし発信はイベント単位・CM単位に留まり、<strong>継続的なストーリーとして届ける仕組みがない</strong>。Story OSがその基盤になります。</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="challenge" class="page">
+  <div class="container">
+    <p class="chap">Chapter 2 — 構造的な課題</p>
+    <h2 class="s-heading">活動は豊富。しかし<br><em>ストーリーが届いていない。</em></h2>
+    <p class="s-lead">明治安田は「保険を超える」戦略を明確に掲げ、2大プロジェクトで実行に移しています。しかし、その価値を伝えるコンテンツ基盤には4つの構造課題があります。</p>
+    <div class="challenge-grid">
+      <div class="c-card">
+        <div class="c-card-head">課題 01</div>
+        <div class="c-card-title">契約者接点が「手続き」中心</div>
+        <div class="c-card-body">契約後の接点は「年1回の契約確認」「保険金請求時」が中心。健康増進・ライフプランの情報提供といった価値接点がデジタルで設計されておらず、契約者のエンゲージメントが深まらない構造。</div>
+      </div>
+      <div class="c-card">
+        <div class="c-card-head">課題 02</div>
+        <div class="c-card-title">2大プロジェクトの価値がストーリーとして未到達</div>
+        <div class="c-card-body">「みんなの健活」「地元の元気」の活動は全国で展開されているが、テレビCM・イベント単位の発信に留まる。参加者の変化、地域の声、成果の裏側が連続コンテンツとして可視化されていない。</div>
+      </div>
+      <div class="c-card">
+        <div class="c-card-head">課題 03</div>
+        <div class="c-card-title">36,000人の営業現場の知見が共有されていない</div>
+        <div class="c-card-body">MYリンクコーディネーターは最大の顧客接点。しかし現場の成功事例・ノウハウが属人的で、採用広報・研修コンテンツ・ブランディングに転換できていない。</div>
+      </div>
+      <div class="c-card">
+        <div class="c-card-head">課題 04</div>
+        <div class="c-card-title">リブランディングの浸透が発展途上</div>
+        <div class="c-card-body">2024年1月に「明治安田生命」から「明治安田」へブランド通称を刷新。三浦知良の起用でCM認知は高いが、「保険を超える明治安田」のストーリーが社内外に浸透する仕組みが不足。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="value" class="page">
+  <div class="container">
+    <p class="chap">Chapter 3 — StoryHubが提供する価値</p>
+    <h2 class="s-heading">Story OS：<em>契約者との対話・現場の知見共有・ブランド浸透</em></h2>
+    <p class="s-lead">StoryHubは既存のシステムを置き換えません。契約者アプリ・営業支援・コーポレートサイトの上位に、横断的なコンテンツ供給基盤（Story OS）を実装します。</p>
+
+    <div class="value-list">
+      <div class="v-row">
+        <div class="v-num">1</div>
+        <div class="v-label">
+          <div class="v-tag teal">StoryHub Feed</div>
+          <div class="v-title">契約者との「対話」をコンテンツで設計</div>
+        </div>
+        <div class="v-desc">契約者アプリに健康・ライフプラン・資産形成のパーソナライズコンテンツを配信。「手続き接点」を「価値接点」に転換し、アプリ利用頻度とエンゲージメントを向上。</div>
+      </div>
+      <div class="v-row">
+        <div class="v-num">2</div>
+        <div class="v-label">
+          <div class="v-tag blue">StoryHub Studio + Interview</div>
+          <div class="v-title">営業現場の知見をAIで記事化・共有</div>
+        </div>
+        <div class="v-desc">MYリンクコーディネーターの成功事例・顧客対応ノウハウをAIインタビューで収集し、構造化。研修・採用広報・社内報に展開し、組織学習を加速。</div>
+      </div>
+      <div class="v-row">
+        <div class="v-num">3</div>
+        <div class="v-label">
+          <div class="v-tag gold">Brand Memory + Assessment</div>
+          <div class="v-title">「新しい明治安田」のブランド浸透を加速</div>
+        </div>
+        <div class="v-desc">リブランディング後の統一メッセージをブランドメモリーに格納。全チャネル・全部門のコンテンツが自動的にブランドガイドラインに整合し、保険業法上の表現チェックも統合。</div>
+      </div>
+    </div>
+
+    <div class="value-outcome">
+      <div class="vo-item">
+        <div class="vo-label">CX</div>
+        <div class="vo-text">契約者との接点が「手続き」から「対話」へ進化</div>
+      </div>
+      <div class="vo-item">
+        <div class="vo-label">組織学習</div>
+        <div class="vo-text">36,000人の現場知見がナレッジ資産に転換</div>
+      </div>
+      <div class="vo-item">
+        <div class="vo-label">ブランド</div>
+        <div class="vo-text">「保険を超える明治安田」のストーリーが統一的に浸透</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="quality" class="page">
+  <div class="container">
+    <p class="chap">Chapter 4 — 品質とコンプライアンス</p>
+    <h2 class="s-heading">金融業界水準の<em>品質担保</em></h2>
+    <p class="s-lead">保険業法・金融商品取引法の制約下で、正確でわかりやすいコンテンツを安定供給する仕組み。</p>
+    <div class="quality-grid">
+      <div class="q-card">
+        <h4>ブランドメモリー</h4>
+        <p>「明治安田」のトーン、商品説明の表現ルール、NG表現、過去記事の文脈をAIが記憶。担当者が変わっても世界観・コンプライアンスが自動的に守られる。</p>
+      </div>
+      <div class="q-card">
+        <h4>AIエディター × 人間校閲</h4>
+        <p>AIが表記揺れ・保険用語の正確性・読みやすさを自動チェック。最終校閲は編集経験者が担当するハイブリッド体制。</p>
+      </div>
+      <div class="q-card">
+        <h4>プロメディア基準</h4>
+        <p>朝日新聞社をはじめ150社超のメディア企業が採用する編集基準を適用。取材設計・ファクトチェック・表現の正確性をメディア水準で担保。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="poc" class="page">
+  <div class="container">
+    <p class="chap">Chapter 5 — PoC設計</p>
+    <h2 class="s-heading">「健活コンテンツ」で<em>6週間トライアル</em></h2>
+    <p class="s-lead">「みんなの健活プロジェクト」のコンテンツ制作・配信をPoCの対象とし、契約者エンゲージメントへの効果を実証します。</p>
+    <div class="poc-timeline">
+      <div class="poc-step">
+        <div class="poc-wk">Week 1</div>
+        <div class="poc-name">ヒアリング</div>
+        <div class="poc-desc">健活コンテンツの現状フロー・課題を把握</div>
+        <div class="poc-arrow">→</div>
+      </div>
+      <div class="poc-step">
+        <div class="poc-wk">Week 2</div>
+        <div class="poc-name">ブランドメモリー構築</div>
+        <div class="poc-desc">明治安田のトーン・表現ルール・保険用語をAIに学習</div>
+        <div class="poc-arrow">→</div>
+      </div>
+      <div class="poc-step">
+        <div class="poc-wk">Week 3-4</div>
+        <div class="poc-name">コンテンツ制作</div>
+        <div class="poc-desc">健活記事10本をStoryHub Studioで制作・校閲</div>
+        <div class="poc-arrow">→</div>
+      </div>
+      <div class="poc-step">
+        <div class="poc-wk">Week 5</div>
+        <div class="poc-name">配信テスト</div>
+        <div class="poc-desc">契約者アプリまたはWebサイトでA/Bテスト配信</div>
+        <div class="poc-arrow">→</div>
+      </div>
+      <div class="poc-step">
+        <div class="poc-wk">Week 6</div>
+        <div class="poc-name">効果測定</div>
+        <div class="poc-desc">閲覧率・滞在時間・健活アクション参加率を分析</div>
+      </div>
+    </div>
+    <div class="poc-meta">
+      <div class="pm-card">
+        <div class="pm-key">対象コンテンツ</div>
+        <div class="pm-val">健活プロジェクト関連記事 10本</div>
+      </div>
+      <div class="pm-card">
+        <div class="pm-key">KPI</div>
+        <div class="pm-val">制作時間1/3短縮、閲覧率・健活参加率向上</div>
+      </div>
+      <div class="pm-card">
+        <div class="pm-key">期間</div>
+        <div class="pm-val">6週間（キックオフから効果測定まで）</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="roadmap" class="page">
+  <div class="container">
+    <p class="chap">Chapter 6 — ロードマップ</p>
+    <h2 class="s-heading">3フェーズで<em>全社コンテンツ基盤</em>へ</h2>
+    <div class="rm-list">
+      <div class="rm-row">
+        <div class="rm-phase">
+          <div class="rm-ph-tag p1">Phase 1</div>
+          <div class="rm-ph-name">健活コンテンツ<br>PoC</div>
+        </div>
+        <div class="rm-body">
+          <div class="rm-title">「みんなの健活」コンテンツを高速制作・配信する（3ヶ月）</div>
+          <div class="rm-desc">健康増進コンテンツ（運動・食事・睡眠・メンタル）をStoryHub Studioで制作。ブランドメモリーに明治安田のトーンと保険用語ルールを格納し、品質とスピードの両立を実証。</div>
+        </div>
+      </div>
+      <div class="rm-row">
+        <div class="rm-phase">
+          <div class="rm-ph-tag p2">Phase 2</div>
+          <div class="rm-ph-name">契約者アプリ<br>Feed統合</div>
+        </div>
+        <div class="rm-body">
+          <div class="rm-title">契約者アプリにパーソナライズコンテンツを配信する（〜6ヶ月）</div>
+          <div class="rm-desc">StoryHub Feedを契約者アプリに統合。年齢・ライフステージ・保有契約に基づくセグメント配信を実装し、アプリ利用頻度と契約者満足度の向上を計測。</div>
+        </div>
+      </div>
+      <div class="rm-row">
+        <div class="rm-phase">
+          <div class="rm-ph-tag p3">Phase 3</div>
+          <div class="rm-ph-name">全社コンテンツ<br>基盤化</div>
+        </div>
+        <div class="rm-body">
+          <div class="rm-title">営業ナレッジ・ESG/IR・採用広報を統合するStory OSを完成（〜12ヶ月）</div>
+          <div class="rm-desc">営業職員インタビューの自動記事化、ESG・IR情報のストーリー化、採用広報コンテンツの一元管理を追加。全チャネルにブランドメモリーが適用された統合コンテンツ基盤を実現。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="closing" class="page">
+  <div class="container">
+    <p class="chap">Discussion</p>
+    <p class="closing-q">143年の信頼を、<br>次の世代に<em>ストーリーで届ける。</em></p>
+
+    <div class="q-list">
+      <div class="q-item">
+        <div class="q-badge">1</div>
+        <div>
+          <div class="q-text">「みんなの健活プロジェクト」のコンテンツ制作・配信で、現在最も課題を感じている領域は？</div>
+          <div class="q-hint">制作スピード、品質管理、パーソナライズ、効果測定…どこに重心があるかを確認したいです。</div>
+        </div>
+      </div>
+      <div class="q-item">
+        <div class="q-badge">2</div>
+        <div>
+          <div class="q-text">契約者アプリの利用頻度向上に向けて、コンテンツ施策として検討されていることは？</div>
+          <div class="q-hint">現在の配信内容、更新頻度、セグメント別の出し分け有無…現状の運用体制を把握させてください。</div>
+        </div>
+      </div>
+      <div class="q-item">
+        <div class="q-badge">3</div>
+        <div>
+          <div class="q-text">リブランディング後の「明治安田」ブランドを、社内外にどのように浸透させていく方針ですか？</div>
+          <div class="q-hint">CM以外のタッチポイント、社内浸透施策、ステークホルダーへの伝え方…コンテンツ戦略全体を理解したいです。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="next-steps">
+      <div class="ns-card">
+        <div class="ns-step">Step 1</div>
+        <div class="ns-name">ヒアリングMTG 1時間</div>
+      </div>
+      <div class="ns-card">
+        <div class="ns-step">Step 2</div>
+        <div class="ns-name">2週間以内にPoC設計書提出</div>
+      </div>
+      <div class="ns-card">
+        <div class="ns-step">Step 3</div>
+        <div class="ns-name">合意後に健活領域で6週間トライアル</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-brand">StoryHub</div>
+  <div class="footer-meta">明治安田生命 × StoryHub 提案資料<br>Confidential — 2026年5月</div>
+</footer>
+</body>
+</html>
