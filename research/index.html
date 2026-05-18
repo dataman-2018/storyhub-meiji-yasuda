@@ -40,6 +40,7 @@
   .hero h1 span { color: var(--teal); }
   .hero-sub { font-size: 14px; color: rgba(247,248,250,0.6); max-width: 540px; margin: 0 auto; line-height: 1.7; }
   .hero-date { margin-top: 32px; font-size: 12px; color: rgba(247,248,250,0.35); }
+  .hero-source { margin-top: 8px; font-size: 11px; color: rgba(247,248,250,0.25); }
 
   .wrap { max-width: 900px; margin: 0 auto; padding: 0 24px; }
   section { padding: 56px 0; }
@@ -57,6 +58,7 @@
   .sec-num { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--teal); font-weight: 700; margin-bottom: 8px; }
   h2.sec-title { font-size: clamp(20px, 2.8vw, 28px); font-weight: 900; line-height: 1.3; margin-bottom: 8px; color: var(--navy); }
   .sec-lead { font-size: 14px; color: var(--ink-3); margin-bottom: 32px; max-width: 640px; }
+  h3.sub-title { font-size: 17px; font-weight: 700; color: var(--navy); margin: 32px 0 16px; padding-bottom: 8px; border-bottom: 2px solid var(--teal); display: inline-block; }
 
   .exec-card { background: linear-gradient(135deg, var(--navy) 0%, #243b5e 100%); color: var(--paper); border-radius: 16px; padding: 40px 36px; box-shadow: var(--shadow-lg); margin-bottom: 32px; }
   .exec-card h3 { font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(247,248,250,0.5); margin-bottom: 20px; }
@@ -69,11 +71,15 @@
   .stat-card { background: var(--card); border: 1px solid var(--rule); border-radius: 10px; padding: 20px 16px; text-align: center; box-shadow: var(--shadow); }
   .stat-card .sv { font-size: 32px; font-weight: 900; color: var(--teal); line-height: 1.1; }
   .stat-card .sl { font-size: 12px; color: var(--ink-3); margin-top: 6px; line-height: 1.5; }
+  .stat-card.target { border-color: rgba(0,160,142,0.3); background: var(--teal-pale); }
+  .stat-card.target .sv { color: var(--navy); }
 
   .insight-box { background: var(--teal-pale); border-left: 3px solid var(--teal); border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 20px 0; }
   .insight-box p { font-size: 13px; color: #0a6e61; font-weight: 500; line-height: 1.75; }
   .insight-box.accent { background: var(--yellow-light); border-left-color: var(--yellow); }
   .insight-box.accent p { color: #b8860b; }
+  .insight-box.rust { background: #fef2f0; border-left-color: var(--rust); }
+  .insight-box.rust p { color: var(--rust); }
 
   .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; margin: 24px 0; }
   .g-card { background: var(--card); border: 1px solid var(--rule); border-radius: 12px; padding: 24px; box-shadow: var(--shadow); }
@@ -83,6 +89,8 @@
   .g-card .tag-teal { background: var(--teal-light); color: var(--teal); }
   .g-card .tag-blue { background: var(--blue-light); color: var(--blue); }
   .g-card .tag-gold { background: var(--yellow-light); color: #b8860b; }
+  .g-card .tag-rust { background: #fef2f0; color: var(--rust); }
+  .g-card .mini-stat { font-size: 28px; font-weight: 900; color: var(--teal); margin: 8px 0 4px; }
 
   .case-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin: 24px 0; }
   .case-card { background: var(--card); border: 1px solid var(--rule); border-radius: 12px; padding: 24px; box-shadow: var(--shadow); }
@@ -95,15 +103,38 @@
   .risk-card h4 { font-size: 14px; font-weight: 700; color: #b8860b; margin-bottom: 8px; }
   .risk-card p { font-size: 13px; color: var(--ink-2); line-height: 1.75; }
 
-  .fit-table { width: 100%; border-collapse: collapse; margin: 24px 0; }
-  .fit-table th, .fit-table td { padding: 14px 16px; text-align: left; border-bottom: 1px solid var(--rule); font-size: 13px; line-height: 1.6; }
+  .fit-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 13px; }
+  .fit-table th, .fit-table td { padding: 14px 16px; text-align: left; border-bottom: 1px solid var(--rule); line-height: 1.6; }
   .fit-table th { background: var(--teal-pale); color: var(--navy); font-weight: 700; font-size: 12px; letter-spacing: 0.04em; }
   .fit-table td:first-child { font-weight: 600; color: var(--navy); min-width: 160px; }
+  .fit-table tr:hover td { background: var(--teal-pale); }
+
+  .kpi-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 13px; }
+  .kpi-table th, .kpi-table td { padding: 12px 14px; text-align: left; border-bottom: 1px solid var(--rule); line-height: 1.5; }
+  .kpi-table th { background: var(--navy); color: #fff; font-weight: 700; font-size: 11px; letter-spacing: 0.04em; }
+  .kpi-table td { background: var(--card); }
+  .kpi-table td:nth-child(2), .kpi-table td:nth-child(3) { text-align: right; font-weight: 700; }
+  .kpi-table .achieved { color: var(--teal); }
+  .kpi-table .gap { color: var(--rust); }
+  .kpi-table .cat { background: var(--teal-pale); font-weight: 700; color: var(--navy); font-size: 12px; }
+
+  .timeline { display: flex; flex-direction: column; gap: 0; margin: 24px 0; border-left: 3px solid var(--teal); padding-left: 24px; }
+  .tl-item { position: relative; padding: 12px 0; }
+  .tl-item::before { content: ''; position: absolute; left: -30px; top: 18px; width: 12px; height: 12px; border-radius: 50%; background: var(--teal); border: 2px solid var(--paper); }
+  .tl-year { font-size: 12px; font-weight: 700; color: var(--teal); letter-spacing: 0.06em; }
+  .tl-text { font-size: 13px; color: var(--ink-2); line-height: 1.6; }
+
+  .pillar-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin: 20px 0; }
+  .pillar { background: var(--card); border: 1px solid var(--rule); border-top: 4px solid var(--teal); border-radius: 0 0 10px 10px; padding: 20px; box-shadow: var(--shadow); }
+  .pillar h4 { font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+  .pillar p { font-size: 12px; color: var(--ink-3); line-height: 1.65; }
+  .pillar.gold { border-top-color: var(--yellow); }
+  .pillar.blue { border-top-color: var(--blue); }
 
   footer { text-align: center; padding: 40px 24px; font-size: 12px; color: var(--ink-3); border-top: 1px solid var(--rule); }
   footer span { color: var(--teal); font-weight: 700; }
 
-  @media (max-width: 640px) { .stat-strip, .card-grid, .case-grid { grid-template-columns: 1fr; } .exec-card { padding: 24px 20px; } .fit-table { font-size: 12px; } }
+  @media (max-width: 640px) { .stat-strip, .card-grid, .case-grid, .pillar-grid { grid-template-columns: 1fr; } .exec-card { padding: 24px 20px; } .kpi-table, .fit-table { font-size: 12px; } }
   @media print { .hero { padding: 40px 24px; } body { font-size: 11px; } }
 </style>
 </head>
@@ -112,9 +143,10 @@
 <header class="hero">
   <div class="hero-inner">
     <div class="hero-label">Research Report — StoryHub × 明治安田生命</div>
-    <h1>生命保険業界の<span>コンテンツ戦略</span><br>デジタル接点の再設計と<br>契約者エンゲージメント</h1>
-    <p class="hero-sub">国内生保市場約40兆円。「保険を超える」戦略が各社で加速する中、コンテンツによる契約者との関係構築が競争優位の鍵となる。</p>
+    <h1>明治安田の<span>「保険を超える」戦略</span>と<br>コンテンツ供給網の構造的不在</h1>
+    <p class="hero-sub">MY Mutual Way II期（2024-2026年度）の2024年度実績を精査し、「戦略の実行力」と「それを伝える力」のギャップを構造的に分析する。</p>
     <div class="hero-date">2026年5月 ・ StoryHub株式会社</div>
+    <div class="hero-source">Primary Source: MY Mutual Way II期 2024年度 実施状況のご報告（2025年6月）</div>
   </div>
 </header>
 
@@ -124,221 +156,508 @@
     <h2>Contents</h2>
     <ol>
       <li><a href="#exec">エグゼクティブサマリー</a></li>
-      <li><a href="#market">業界概況</a></li>
-      <li><a href="#cx">契約者コミュニケーションの課題</a></li>
-      <li><a href="#cases">先進事例</a></li>
-      <li><a href="#meiji">明治安田生命の現状分析</a></li>
+      <li><a href="#plan">MY Mutual Way II期の全体像</a></li>
+      <li><a href="#kpi">2024年度 経営目標の達成状況</a></li>
+      <li><a href="#growth">成長ドライバー分析（5領域）</a></li>
+      <li><a href="#kenkatsu">2大プロジェクトの実績と課題</a></li>
+      <li><a href="#dx">DX戦略2.0とブランド戦略</a></li>
+      <li><a href="#industry">業界コンテンツ戦略ベンチマーク</a></li>
+      <li><a href="#gap">構造的ギャップ分析</a></li>
       <li><a href="#fit">StoryHubとの接点仮説</a></li>
-      <li><a href="#impact">想定インパクト</a></li>
+      <li><a href="#impact">想定インパクトと提案</a></li>
     </ol>
   </div>
 
+  <!-- 01: EXECUTIVE SUMMARY -->
   <section id="exec">
     <div class="sec-num">01</div>
     <h2 class="sec-title">エグゼクティブサマリー</h2>
 
     <div class="exec-card">
       <h3>Executive Summary</h3>
-      <p>生命保険業界は「保険商品の提供」から<strong>「顧客のウェルビーイング全体の支援」</strong>へと構造転換の最中にある。明治安田は「MY Mutual Way 2030」で業界に先駆けてこの方向を宣言し、<span class="highlight">2大プロジェクト（みんなの健活・地元の元気）</span>で実行に移している。</p>
-      <p>しかし、この戦略的転換を<strong>「伝わるストーリー」として契約者・従業員・ステークホルダーに継続的に届ける仕組み</strong>が不在。テレビCMとイベントに依存した発信構造では、900万人の契約者との日常的な「対話」は実現できない。</p>
-      <p>StoryHubのStory OSは、健活コンテンツのパーソナライズ配信、営業現場のナレッジ共有、ESG/IRのストーリー化を統合する<strong>コンテンツ供給網</strong>として、この構造課題を解決する。</p>
+      <p>明治安田は10年計画「MY Mutual Way 2030」のもと、<span class="highlight">「生命保険会社の役割を超える」</span>ことを明確に宣言した。II期（2024-2026年度）では「シェアの拡大」と「共創を通じた多元的価値の創造」を2軸に、健活プロジェクト・地元の元気プロジェクトを中核に据えている。</p>
+      <p>2024年度の実績は概ね好調。グループ基礎利益<strong>6,264億円</strong>（目標5,000億円超）、ESR<strong>216%</strong>（目標165%超）と財務基盤は盤石。MYリンクコーディネーター満足度は<strong>5年連続で過去最高</strong>を更新し、営業フロントの改革も着実に進む。</p>
+      <p>しかし、これらの「戦略の実行成果」を<strong>継続的なストーリーとして伝える仕組み</strong>が構造的に不在。テレビCM・Jリーグスポンサーシップ・イベントという「イベントドリブン」の発信構造では、1,227万人の顧客との日常的な対話は実現できない。StoryHubのStory OSは、この<span class="highlight">「戦略と発信のギャップ」</span>を埋めるインフラとして提案する。</p>
     </div>
   </section>
 
-  <section id="market">
+  <!-- 02: MY MUTUAL WAY II -->
+  <section id="plan">
     <div class="sec-num">02</div>
-    <h2 class="sec-title">業界概況</h2>
-    <p class="sec-lead">国内生命保険市場は約40兆円。4大生保を中心に「保険を超える」戦略が加速</p>
+    <h2 class="sec-title">MY Mutual Way II期の全体像</h2>
+    <p class="sec-lead">2020年から始まった10年計画の中間フェーズ。I期のフェーズチェンジを経て、II期では「生命保険会社の役割を超える」ことに本格着手</p>
 
-    <div class="stat-strip">
-      <div class="stat-card"><div class="sv">~40兆円</div><div class="sl">国内生命保険<br>保険料等収入</div></div>
-      <div class="stat-card"><div class="sv">42社</div><div class="sl">国内生命保険<br>事業者数</div></div>
-      <div class="stat-card"><div class="sv">88.7%</div><div class="sl">世帯加入率<br>（依然高水準）</div></div>
-      <div class="stat-card"><div class="sv">~3,700万件</div><div class="sl">個人保険<br>新規契約件数/年</div></div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-year">2014</div>
+        <div class="tl-text">明治安田NEXTチャレンジプログラム開始</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2017</div>
+        <div class="tl-text">MYイノベーション2020策定</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2020</div>
+        <div class="tl-text">MY Mutual Way 2030始動。アフターフォロー特別計画</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2021-2023 (I期)</div>
+        <div class="tl-text">4大改革＋DX戦略で「フォーカスチェンジ」を実現。2大プロジェクト立ち上げ</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2024-2026 (II期)</div>
+        <div class="tl-text">「生命保険会社の役割を超える」。シェア拡大×共創による多元的価値の創造</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2027-2030</div>
+        <div class="tl-text">「ひとに健康を、まちに元気を。」最も身近なリーディング生保の実現</div>
+      </div>
     </div>
 
-    <div class="card-grid">
-      <div class="g-card">
-        <h4>4大生保の競争軸の変化</h4>
-        <p>日本生命・第一生命・住友生命・明治安田の4社が、従来の「保険料率・保障内容」の競争から「顧客体験・ヘルスケア・デジタル」の競争へシフト。コンテンツ力が差別化要因に。</p>
+    <h3 class="sub-title">II期の戦略フレームワーク</h3>
+
+    <div class="pillar-grid">
+      <div class="pillar">
+        <h4>成長ドライバー (1)</h4>
+        <p>営業サービス・フロントのさらなる強化（人の役割の高度化）</p>
       </div>
-      <div class="g-card">
-        <h4>健康増進型保険の普及</h4>
-        <p>住友生命「Vitality」、明治安田「ベストスタイル 健康キャッシュバック」、第一生命「健診割」など。保険と健康行動を連動させ、継続的な顧客接点が経営課題に浮上。</p>
+      <div class="pillar">
+        <h4>成長ドライバー (2)</h4>
+        <p>生命保険の機能の拡張（ヘルスケア・QOL・資産形成）</p>
       </div>
-      <div class="g-card">
-        <h4>Z世代の保険行動</h4>
-        <p>29歳以下は「企業HP」経由の保険加入率が全体平均の3.5倍（13.3% vs 3.8%）。デジタルコンテンツが購買導線になる時代。営業職員依存モデルからの転換が急務。</p>
+      <div class="pillar">
+        <h4>成長ドライバー (3)</h4>
+        <p>資産運用の高度化・海外保険事業の拡充</p>
+      </div>
+      <div class="pillar gold">
+        <h4>経営基盤拡充 (1)</h4>
+        <p>ひと中心経営の推進と働きがいの向上</p>
+      </div>
+      <div class="pillar blue">
+        <h4>経営基盤拡充 (2)</h4>
+        <p>IT・デジタル投資のさらなる推進（DX戦略2.0）</p>
+      </div>
+      <div class="pillar">
+        <h4>経営基盤拡充 (3)</h4>
+        <p>ガバナンスの高度化・サステナビリティ経営の推進</p>
       </div>
     </div>
 
     <div class="insight-box">
-      <p><strong>構造変化の本質：</strong>生命保険は「万一の備え」から「日常の伴走者」へ。この転換を顧客に伝えるには、商品パンフレットではなく「ストーリー」が必要。</p>
+      <p><strong>注目点：</strong>II期の最上位メッセージは「生命保険会社の役割を超える」。保障＋アフターフォローに加え、「ヘルスケア・QOLの向上」と「地域活性化」という2方向に役割を拡張。この戦略転換を顧客・ステークホルダーに伝えるには、商品パンフレットではなく「ストーリー」が必要。</p>
     </div>
   </section>
 
-  <section id="cx">
+  <!-- 03: KPI -->
+  <section id="kpi">
     <div class="sec-num">03</div>
-    <h2 class="sec-title">契約者コミュニケーションの課題</h2>
-    <p class="sec-lead">契約後の接点が「年1回」に留まる構造的問題</p>
+    <h2 class="sec-title">2024年度 経営目標の達成状況</h2>
+    <p class="sec-lead">中期経営計画の目標値に向けて概ね順調に進捗。財務面は目標超過、成長性指標は目標に迫る</p>
 
-    <div class="card-grid">
-      <div class="g-card">
-        <div class="tag tag-teal">課題 1</div>
-        <h4>接点の希薄化</h4>
-        <p>契約後の接点は「年1回の契約内容確認」と「保険金請求時」がメイン。デジタル時代の顧客が求める日常的な価値提供ができていない。保有契約の解約率に直結する構造的リスク。</p>
-      </div>
-      <div class="g-card">
-        <div class="tag tag-teal">課題 2</div>
-        <h4>紙DM→デジタルの移行遅れ</h4>
-        <p>紙のDM・パンフレットが依然として主要チャネル。開封率・到達率の低下が続く中、デジタルコンテンツへの移行が遅れ、若年層への到達力が低下。</p>
-      </div>
-      <div class="g-card">
-        <div class="tag tag-teal">課題 3</div>
-        <h4>コンテンツの分断</h4>
-        <p>営業資料・Web・アプリ・CM・イベントが分断的に運用され、メッセージの一貫性が担保されない。各チャネルが独立してコンテンツを制作するため、非効率かつブランドがブレやすい。</p>
-      </div>
-    </div>
-
-    <div class="risk-card">
-      <h4>業界共通のリスク：AI活用とコンプライアンス</h4>
-      <p>保険業法・金融商品取引法の制約下で、AIによるコンテンツ生成には<strong>正確性・適合性の担保</strong>が不可欠。「AIが書いた保険の説明が不正確だった」は、企業存続に関わるリスク。ブランドメモリーによる表現ガバナンスが、業界特有の安全弁として機能する。</p>
-    </div>
-  </section>
-
-  <section id="cases">
-    <div class="sec-num">04</div>
-    <h2 class="sec-title">先進事例</h2>
-    <p class="sec-lead">国内外の保険・金融業界におけるコンテンツ戦略の先進事例</p>
-
-    <div class="case-grid">
-      <div class="case-card">
-        <h4>Lemonade（米国）</h4>
-        <div class="case-co">デジタルネイティブ保険</div>
-        <div class="case-stat">4.9★</div>
-        <p>コンテンツファーストの保険UXで急成長。ブログ・SNS・動画でZ世代の保険不信を解消し、アプリストア最高評価を維持。「保険の説明」ではなく「人生のストーリー」を軸にしたコミュニケーション。</p>
-      </div>
-      <div class="case-card">
-        <h4>John Hancock / Vitality</h4>
-        <div class="case-co">米国・健康増進型保険</div>
-        <div class="case-stat">2.5x</div>
-        <p>Vitalityプログラムと連動した健康コンテンツ配信で、契約者エンゲージメントが2.5倍に。ウェアラブル連携×パーソナライズコンテンツで「保険=日常」の接点を実現。</p>
-      </div>
-      <div class="case-card">
-        <h4>第一生命「ミラシル」</h4>
-        <div class="case-co">国内先行事例</div>
-        <div class="case-stat">月100万PV</div>
-        <p>「一生涯のパートナー」をコンセプトにした総合オウンドメディア。健康・マネー・子育て・介護のコンテンツで、保険の契約有無を問わず接点を創出。国内生保で最も先進的なコンテンツ戦略。</p>
-      </div>
-      <div class="case-card">
-        <h4>住友生命「Vitality」</h4>
-        <div class="case-co">国内・健康増進型保険</div>
-        <div class="case-stat">200万人</div>
-        <p>加入者200万人超の健康増進プログラム。アプリ内で健康コンテンツを配信し、行動変容を促進。データ蓄積による保険料の個別最適化まで実装済み。</p>
-      </div>
-    </div>
-
-    <div class="insight-box accent">
-      <p><strong>示唆：</strong>先進事例に共通するのは「保険商品の情報」ではなく「顧客の人生に役立つストーリー」を継続的に配信している点。明治安田は「みんなの健活」で素材は揃っているが、「継続配信の仕組み」が不足。</p>
-    </div>
-  </section>
-
-  <section id="meiji">
-    <div class="sec-num">05</div>
-    <h2 class="sec-title">明治安田生命の現状分析</h2>
-    <p class="sec-lead">「保険を超える」戦略と2大プロジェクトの現在地</p>
-
-    <div class="card-grid">
-      <div class="g-card">
-        <div class="tag tag-teal">強み</div>
-        <h4>みんなの健活プロジェクト</h4>
-        <p>健康チェックイベント、健活アプリ、AIによる健康アドバイスなど、業界でも先進的な健康増進施策。素材・活動は豊富だが、ストーリーとしての発信は断片的。</p>
-      </div>
-      <div class="g-card">
-        <div class="tag tag-teal">強み</div>
-        <h4>MYリンクコーディネーター</h4>
-        <p>36,000人超の営業職員による1to1の顧客接点。デジタル時代でも「対面の信頼」は最大の資産。この知見をデジタルコンテンツに転換できれば、採用広報とCXの両方に効く。</p>
-      </div>
-      <div class="g-card">
-        <div class="tag tag-gold">機会</div>
-        <h4>リブランディング</h4>
-        <p>2024年1月に「明治安田生命」→「明治安田」へ刷新。143年の歴史×「保険を超える」未来像を統合するナラティブ設計は、ブランド浸透の加速装置になり得る。</p>
-      </div>
-      <div class="g-card">
-        <div class="tag tag-gold">機会</div>
-        <h4>Jリーグタイトルパートナー</h4>
-        <p>J1/J2/J3全カテゴリのスポンサー。スタジアム×地域×健康のストーリーは「地元の元気プロジェクト」と直結。現状はイベント単発に留まるが、連続コンテンツ化のポテンシャルは大きい。</p>
-      </div>
-    </div>
-
-    <div class="stat-strip">
-      <div class="stat-card"><div class="sv">900万人</div><div class="sl">契約者<br>（最大の顧客資産）</div></div>
-      <div class="stat-card"><div class="sv">36,000人</div><div class="sl">営業職員<br>（最大の接点資産）</div></div>
-      <div class="stat-card"><div class="sv">~1,100</div><div class="sl">全国営業拠点<br>（地域密着ネットワーク）</div></div>
-      <div class="stat-card"><div class="sv">143年</div><div class="sl">創業年数<br>（日本初の生保）</div></div>
-    </div>
-
-    <div class="insight-box">
-      <p><strong>ギャップ：</strong>明治安田は「何をすべきか（戦略）」は明確。しかし「それをどう伝えるか（コンテンツ供給網）」の設計が追いついていない。2大プロジェクトの活動は豊富だが、ストーリーとして「届く」仕組みがない。これがStoryHub提案の核心的な論点。</p>
-    </div>
-  </section>
-
-  <section id="fit">
-    <div class="sec-num">06</div>
-    <h2 class="sec-title">StoryHubとの接点仮説</h2>
-    <p class="sec-lead">明治安田の課題とStoryHub Story OSの対応関係</p>
-
-    <table class="fit-table">
+    <table class="kpi-table">
       <thead>
         <tr>
-          <th>明治安田の課題</th>
-          <th>Story OSの提供価値</th>
-          <th>該当プロダクト</th>
+          <th>カテゴリ</th>
+          <th>指標</th>
+          <th>2024年度 実績</th>
+          <th>中計目標値</th>
+          <th>評価</th>
         </tr>
       </thead>
       <tbody>
+        <tr class="cat"><td colspan="5">健全性</td></tr>
         <tr>
-          <td>契約者接点が「手続き」中心</td>
-          <td>健康・ライフプラン・資産形成のパーソナライズコンテンツを契約者アプリに配信。「手続き接点」を「価値接点」に転換</td>
-          <td>Feed + Insight</td>
+          <td></td>
+          <td>グループESR</td>
+          <td class="achieved">216%</td>
+          <td>165%以上（当面220%）</td>
+          <td class="achieved">達成</td>
         </tr>
         <tr>
-          <td>2大プロジェクトの発信が断片的</td>
-          <td>「健活」「地元の元気」をストーリーとして構造化。参加者の変化・地域の声・成果の裏側を連続コンテンツに</td>
-          <td>Studio + Interview</td>
+          <td></td>
+          <td>オンバランス自己資本</td>
+          <td class="achieved">5.0兆円</td>
+          <td>4.5兆円以上</td>
+          <td class="achieved">達成</td>
+        </tr>
+        <tr class="cat"><td colspan="5">収益性</td></tr>
+        <tr>
+          <td></td>
+          <td>グループ基礎利益</td>
+          <td class="achieved">6,264億円</td>
+          <td>5,000億円程度</td>
+          <td class="achieved">超過達成</td>
+        </tr>
+        <tr class="cat"><td colspan="5">成長性</td></tr>
+        <tr>
+          <td></td>
+          <td>グループ保険料（除く再保険収入）</td>
+          <td class="gap">3.4兆円</td>
+          <td>4.0兆円以上</td>
+          <td class="gap">未達</td>
         </tr>
         <tr>
-          <td>営業現場の知見が属人的</td>
-          <td>36,000人のMYリンクコーディネーターの成功事例をAIインタビューで収集・記事化。研修・採用広報に展開</td>
-          <td>Interview + Studio</td>
+          <td></td>
+          <td>保有契約年換算保険料（保障性）</td>
+          <td>6,132億円</td>
+          <td>6,150億円</td>
+          <td>概ね達成</td>
         </tr>
         <tr>
-          <td>リブランディングの浸透不足</td>
-          <td>ブランドメモリーに「新しい明治安田」のトーン・メッセージを格納。全チャネルで統一ブランド体験を自動担保</td>
-          <td>Brand Memory</td>
+          <td></td>
+          <td>団体保険保有契約高</td>
+          <td class="achieved">国内シェアNo.1</td>
+          <td>国内シェアNo.1</td>
+          <td class="achieved">維持</td>
         </tr>
         <tr>
-          <td>保険業法上の表現リスク</td>
-          <td>AIエディターが保険用語の正確性・コンプライアンス適合性を自動チェック。人間の最終校閲と組み合わせ</td>
-          <td>Assessment</td>
+          <td></td>
+          <td>お客さま数</td>
+          <td>1,227万人</td>
+          <td>1,240万人</td>
+          <td>あと13万人</td>
         </tr>
         <tr>
-          <td>Z世代へのリーチ不足</td>
-          <td>デジタルコンテンツ経由の保険理解・行動促進。オウンドメディアの構築・運用を支援</td>
-          <td>Feed + Studio</td>
+          <td></td>
+          <td>MYリンクコーディネーター数</td>
+          <td>36,964人</td>
+          <td>37,000人</td>
+          <td>概ね達成</td>
         </tr>
       </tbody>
     </table>
 
     <div class="insight-box accent">
-      <p><strong>提案の切り口（優先順位）：</strong>(1) 健活コンテンツのパーソナライズ配信PoC → (2) 契約者アプリへのFeed統合 → (3) 営業ナレッジの構造化 → (4) 全社コンテンツ基盤化。「健活」から始めることで、明治安田にとって最もわかりやすい成果を早期に実証できる。</p>
+      <p><strong>読み解き：</strong>財務の健全性・収益性は目標を大きく超過。一方でグループ保険料（3.4兆円 vs 目標4.0兆円）が未達。「保険を超える」戦略の成果がトップラインの成長に結びつくには、契約者との接点強化＝コンテンツによる価値提供が不可欠。</p>
     </div>
   </section>
 
-  <section id="impact">
+  <!-- 04: GROWTH DRIVERS -->
+  <section id="growth">
+    <div class="sec-num">04</div>
+    <h2 class="sec-title">成長ドライバー分析</h2>
+    <p class="sec-lead">5つの成長領域における2024年度の実績と、コンテンツ戦略との接点</p>
+
+    <h3 class="sub-title">4-1. 営業サービス・フロントの強化</h3>
+
+    <div class="stat-strip">
+      <div class="stat-card"><div class="sv">72.7%</div><div class="sl">MYリンクコーディネーター<br>に対する満足度<br>（前年度差+1.2pt）</div></div>
+      <div class="stat-card"><div class="sv">93.9%</div><div class="sl">行政サービス案内<br>自治体カバー率<br>（2025年3月末）</div></div>
+      <div class="stat-card"><div class="sv">36,964人</div><div class="sl">MYリンクコーディネーター<br>在籍者数</div></div>
+      <div class="stat-card"><div class="sv">5年連続</div><div class="sl">顧客満足度<br>過去最高更新</div></div>
+    </div>
+
+    <div class="card-grid">
+      <div class="g-card">
+        <div class="tag tag-teal">実績</div>
+        <h4>「社会貢献型営業モデル」の定着</h4>
+        <p>MYリンクコーディネーターが健康・介護・子育て・防災および防犯に関する行政サービスの情報を提供する「行政サービス案内」が自治体カバー率93.9%に到達。消費者庁長官表彰も受賞。</p>
+      </div>
+      <div class="g-card">
+        <div class="tag tag-rust">コンテンツ観点の課題</div>
+        <h4>36,000人の知見が外部に出ていない</h4>
+        <p>満足度5年連続最高更新の営業組織でありながら、成功事例・ノウハウが属人的。採用広報・ブランディング・研修に転用されておらず、最大の顧客接点資産がコンテンツ化されていない。</p>
+      </div>
+    </div>
+
+    <h3 class="sub-title">4-2. 生命保険の機能の拡張</h3>
+
+    <div class="card-grid">
+      <div class="g-card">
+        <div class="tag tag-teal">新商品</div>
+        <h4>QOL応援プログラム</h4>
+        <p>「ペイシェント・ジャーニーに寄り添ったサポート」を保険給付の前後に提供。国立循環器病研究センター・明治安田総合研究所との共同研究成果を活用した「循環器病 対策Pro」を2025年1月に発売。</p>
+      </div>
+      <div class="g-card">
+        <div class="tag tag-teal">資産形成</div>
+        <h4>明治安田の資産形成シリーズ</h4>
+        <p>「長期的・安定的」な資産形成をコンセプトに、長期運用年金（2024年10月）、円建一時払養老保険（2025年4月）を発売。業界初の確定給付企業年金保険（一般勘定）も提供開始。</p>
+      </div>
+      <div class="g-card">
+        <div class="tag tag-gold">共創</div>
+        <h4>日清食品・イオンとの共創</h4>
+        <p>日清食品と「完全メシ」を通じたQOL向上で協業。イオングループとは包括的パートナーシップを締結し、「健康で元気な生活」「消費活動の充実」「安心の提供」を軸に連携。</p>
+      </div>
+      <div class="g-card">
+        <div class="tag tag-gold">アカデミア</div>
+        <h4>弘前大学 QOL共同研究</h4>
+        <p>弘前大学の約20年にわたる地域健康増進プロジェクト「岩木健康増進プロジェクト」をベースに「QOL健健 明治安田×弘前大学」を実施。2025年4月には共同研究所を共同設立。</p>
+      </div>
+    </div>
+
+    <div class="insight-box rust">
+      <p><strong>コンテンツ観点の課題：</strong>QOL応援プログラム、共創パートナーシップ、アカデミア連携——いずれも「ストーリーになる素材」が豊富。しかし現状は商品パンフレットとプレスリリースでの発信に留まり、契約者が日常的に触れるコンテンツになっていない。</p>
+    </div>
+
+    <h3 class="sub-title">4-3. 資産運用・海外事業</h3>
+
+    <div class="stat-strip">
+      <div class="stat-card"><div class="sv">~2,000億円</div><div class="sl">プライベートアセット<br>投資額（2024年度）</div></div>
+      <div class="stat-card"><div class="sv">~6,000億円</div><div class="sl">ESG投融資額<br>（2024年度実績）</div></div>
+      <div class="stat-card"><div class="sv">PRI A</div><div class="sl">国連責任投資原則<br>年次評価</div></div>
+    </div>
+
+    <div class="card-grid">
+      <div class="g-card">
+        <h4>スタートアップ投資（CVC）</h4>
+        <p>Global Brain×明治安田のCVCファンド（2025年4月設立）を通じ、geofla、Boston Medical Sciences、SMART BANK、amptalk、cala、medigle等に投資。「人々の健康」「地域活性化」「新たな体験」の3領域。</p>
+      </div>
+      <div class="g-card">
+        <h4>海外事業の拡充</h4>
+        <p>スタンコープ社（米国団体保険）の強化に加え、Legal & General Group（英国）、バナーライフ社（米国個人保険）の買収を含む戦略的業務提携を推進。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05: 2大プロジェクト -->
+  <section id="kenkatsu">
+    <div class="sec-num">05</div>
+    <h2 class="sec-title">2大プロジェクトの実績と課題</h2>
+    <p class="sec-lead">明治安田の「保険を超える」戦略の中核。豊富な活動実績がある一方、コンテンツとしての発信は断片的</p>
+
+    <h3 class="sub-title">みんなの健活プロジェクト</h3>
+
+    <div class="stat-strip">
+      <div class="stat-card"><div class="sv">161万件</div><div class="sl">ベストスタイル<br>健康キャッシュバック<br>累計販売件数</div></div>
+      <div class="stat-card"><div class="sv">266億円</div><div class="sl">健康サポート・<br>キャッシュバック<br>累計お支払い実績</div></div>
+      <div class="stat-card"><div class="sv">73.5%</div><div class="sl">直近1年間で<br>健康意識が高まった<br>人の割合（+12.3pt）</div></div>
+    </div>
+
+    <div class="card-grid">
+      <div class="g-card">
+        <div class="tag tag-teal">受診後押し</div>
+        <h4>"けんしん"受診の後押し</h4>
+        <p>キャッシュバックランクを3段階から5段階に細分化し、最大月1.1万円に増額。マイナポータル連携「マイナでけんしん提出」や、LINE活用での健診結果提出の高度化を推進。</p>
+      </div>
+      <div class="g-card">
+        <div class="tag tag-teal">疾病予防</div>
+        <h4>血管レポートの展開</h4>
+        <p>循環器系の発症リスクを予測する「明治安田 血管レポート」の展開や、健康診断をもとに「健康年齢」を評価するサービスの拡充。行動変容のきっかけとなるコンテンツも全国展開。</p>
+      </div>
+    </div>
+
+    <div class="insight-box accent">
+      <p><strong>コンテンツ化の機会：</strong>健康キャッシュバック161万件、健康意識向上73.5%——これらの「数字の裏側」にある契約者の行動変容ストーリーが、最もパワフルなコンテンツ素材。「血管年齢が改善した人の体験談」「健活で生活が変わった家族の話」は、契約者アプリで最も読まれるコンテンツになり得る。</p>
+    </div>
+
+    <h3 class="sub-title">地元の元気プロジェクト</h3>
+
+    <div class="stat-strip">
+      <div class="stat-card"><div class="sv">1,078</div><div class="sl">連携協定<br>締結自治体数</div></div>
+      <div class="stat-card"><div class="sv">8.8億円</div><div class="sl">「私の地元応援募金」<br>寄付金総額</div></div>
+      <div class="stat-card"><div class="sv">250万人</div><div class="sl">Jリーグ<br>累計観戦者数突破</div></div>
+    </div>
+
+    <div class="card-grid">
+      <div class="g-card">
+        <h4>地域における役割の拡充</h4>
+        <p>地域リレーション本部の新設。ドラッグストア等との協働取組みも開始。従業員の「私の地元応援募金」で地域課題解決に直接貢献する仕組みを構築。</p>
+      </div>
+      <div class="g-card">
+        <h4>コンテンツの開発・展開</h4>
+        <p>認知症予防の「大人の塗り絵コンクール」「健康マージャン」等の健康増進アクション。Jリーグ・JLPGA・バドミントン協会等との「未来世代応援プログラム」。地域別の実績資料「わがまちインフォ」も提供開始。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06: DX & BRAND -->
+  <section id="dx">
+    <div class="sec-num">06</div>
+    <h2 class="sec-title">DX戦略2.0とブランド戦略</h2>
+    <p class="sec-lead">デジタル投資と「明治安田」ブランドの浸透状況</p>
+
+    <h3 class="sub-title">DX戦略2.0</h3>
+
+    <div class="card-grid">
+      <div class="g-card">
+        <div class="mini-stat">3年連続</div>
+        <h4>IT賞（マネジメント領域）受賞</h4>
+        <p>自社版ChatGPT「AIアシスタント」の活用促進や、個別業務への生成AI実装を推進。MYリンクコーディネーターの活動支援ツール「デジタル秘書 MYパレット」の展開も。</p>
+      </div>
+      <div class="g-card">
+        <div class="tag tag-blue">パートナーシップ</div>
+        <h4>アクセンチュア社との提携</h4>
+        <p>生成AI等の先端デジタル技術のさらなる活用に向け、アクセンチュア社と包括的パートナーシップ契約を締結。検討・開発プロセスを通じた実践的な人財育成（ヒトづくり）も推進。</p>
+      </div>
+      <div class="g-card">
+        <div class="tag tag-teal">受賞</div>
+        <h4>グッドデザイン賞 受賞</h4>
+        <p>「お客さまに寄り添う」デザイン経営を推進。金融機関として初の取り組みも含め、デザインの提供にも取り組む。</p>
+      </div>
+    </div>
+
+    <h3 class="sub-title">ブランド戦略</h3>
+
+    <div class="stat-strip">
+      <div class="stat-card"><div class="sv">Top 100</div><div class="sl">Best Japan Brands<br>（前年度から30位以上上昇）</div></div>
+      <div class="stat-card"><div class="sv">46.6万人</div><div class="sl">Jリーグ<br>単年度観戦者数</div></div>
+      <div class="stat-card"><div class="sv">41/58</div><div class="sl">JLPGAトーナメント<br>協賛数</div></div>
+      <div class="stat-card"><div class="sv">13.6万点</div><div class="sl">フォトコン<br>応募総数（過去最高）</div></div>
+    </div>
+
+    <div class="card-grid">
+      <div class="g-card">
+        <h4>重層的なメディアプロモーション</h4>
+        <p>テレビCM・新聞広告に加え、SNSやブランドサイト等のオウンドメディアを活用した情報発信を強化。三浦知良を企業タレントに起用（2024年1月〜）。</p>
+      </div>
+      <div class="g-card">
+        <h4>「当社らしいコンテンツ」の充実</h4>
+        <p>「明治安田ヴィレッジ」を全本部等所在地15カ所まで拡大。「明治安田しあわせフォトコン」で過去最高の応募総数13.6万点。しかし、いずれもイベント型の施策であり、日常的なコンテンツ供給の仕組みは未構築。</p>
+      </div>
+    </div>
+
+    <div class="insight-box rust">
+      <p><strong>構造的な問題：</strong>DX戦略ではAI活用・アクセンチュア提携と先進的だが、「コンテンツのDX」は空白。ブランド戦略はCM・スポーツ・イベントの「マス×体験」型で、デジタルコンテンツによる日常的なブランド接点が設計されていない。</p>
+    </div>
+  </section>
+
+  <!-- 07: INDUSTRY BENCHMARK -->
+  <section id="industry">
     <div class="sec-num">07</div>
-    <h2 class="sec-title">想定インパクト</h2>
-    <p class="sec-lead">他業界の導入実績と業界ベンチマークからの試算</p>
+    <h2 class="sec-title">業界コンテンツ戦略ベンチマーク</h2>
+    <p class="sec-lead">国内外の保険・金融業界におけるコンテンツ戦略の先進事例と明治安田との差分</p>
+
+    <div class="case-grid">
+      <div class="case-card">
+        <h4>第一生命「ミラシル」</h4>
+        <div class="case-co">国内最先行のオウンドメディア</div>
+        <div class="case-stat">月100万PV</div>
+        <p>「一生涯のパートナー」をコンセプトにした総合オウンドメディア。健康・マネー・子育て・介護のコンテンツで、保険契約の有無を問わず接点を創出。国内4大生保で唯一の本格的コンテンツ戦略。</p>
+      </div>
+      <div class="case-card">
+        <h4>住友生命「Vitality」</h4>
+        <div class="case-co">健康増進型保険のデータ活用</div>
+        <div class="case-stat">200万人+</div>
+        <p>加入者200万人超のプログラム。アプリ内で健康コンテンツを配信し行動変容を促進。健康データ蓄積→保険料最適化→さらなるエンゲージメントの好循環を構築済み。</p>
+      </div>
+      <div class="case-card">
+        <h4>John Hancock / Vitality（米国）</h4>
+        <div class="case-co">コンテンツ×ウェアラブル連携</div>
+        <div class="case-stat">2.5x エンゲージメント</div>
+        <p>Vitalityプログラムと連動したパーソナライズ健康コンテンツで、契約者エンゲージメントが2.5倍に。「保険=日常」の接点をコンテンツで実現した先進モデル。</p>
+      </div>
+      <div class="case-card">
+        <h4>Lemonade（米国）</h4>
+        <div class="case-co">Z世代向けコンテンツファースト</div>
+        <div class="case-stat">4.9★ App Store</div>
+        <p>「保険の説明」ではなく「人生のストーリー」を軸にしたコミュニケーションで、Z世代の保険不信を解消。ブログ・SNS・動画のコンテンツ戦略が成長エンジン。</p>
+      </div>
+    </div>
+
+    <div class="risk-card">
+      <h4>明治安田 vs 第一生命のコンテンツ戦略差分</h4>
+      <p>第一生命は「ミラシル」で<strong>保険の外側</strong>にコンテンツ接点を持つ。明治安田は「みんなの健活」「地元の元気」で<strong>活動の量では上回る</strong>が、それをデジタルコンテンツとして日常的に届ける仕組みがない。素材は明治安田の方が豊富——不足しているのはコンテンツ供給網（Story OS）である。</p>
+    </div>
+  </section>
+
+  <!-- 08: GAP ANALYSIS -->
+  <section id="gap">
+    <div class="sec-num">08</div>
+    <h2 class="sec-title">構造的ギャップ分析</h2>
+    <p class="sec-lead">「戦略の実行力」と「それを伝える力」の間に、5つの構造的ギャップが存在する</p>
+
+    <div class="card-grid">
+      <div class="g-card">
+        <div class="tag tag-rust">Gap 1</div>
+        <h4>契約者接点の断絶</h4>
+        <p>1,227万人の契約者に対し、接点は「年1回の契約確認」「保険金請求時」が中心。健活キャッシュバック161万件の契約者ですら、日常的なコンテンツ接点がない。アプリはあっても「手続きツール」に留まる。</p>
+      </div>
+      <div class="g-card">
+        <div class="tag tag-rust">Gap 2</div>
+        <h4>2大プロジェクトの発信断片化</h4>
+        <p>健活：161万件・266億円支払い・73.5%意識向上。地元の元気：1,078自治体・8.8億円寄付。これだけの実績がありながら、発信はCM・プレスリリース・イベント単位。「連続するストーリー」になっていない。</p>
+      </div>
+      <div class="g-card">
+        <div class="tag tag-rust">Gap 3</div>
+        <h4>営業ナレッジの非コンテンツ化</h4>
+        <p>MYリンクコーディネーター36,964人の満足度72.7%（5年連続最高）。しかし成功事例・行動事例（約20万事例収集済み）が社内に閉じており、採用・ブランディング・研修のコンテンツに変換されていない。</p>
+      </div>
+      <div class="g-card">
+        <div class="tag tag-rust">Gap 4</div>
+        <h4>共創パートナーの可視化不足</h4>
+        <p>日清食品、イオン、弘前大学、Global Brain CVC——多数の共創が進行中だが、その「ストーリー」が契約者・ステークホルダーに届いていない。共創の価値が「保険を超える明治安田」のブランド形成に活きていない。</p>
+      </div>
+      <div class="g-card">
+        <div class="tag tag-rust">Gap 5</div>
+        <h4>DXの「コンテンツ領域」が空白</h4>
+        <p>AIアシスタント導入、IT賞3年連続、アクセンチュア提携——DX投資は積極的。しかし「コンテンツの生成・配信・最適化」のDXは手つかず。業務効率化のDXはあっても、顧客接点のDXが不十分。</p>
+      </div>
+    </div>
+
+    <div class="exec-card" style="margin-top:32px;">
+      <h3>Gap Summary</h3>
+      <p>明治安田は<strong>「何をすべきか（戦略）」も「何をやったか（実績）」も明確</strong>。MY Mutual Way II期の実行力は高く、2024年度の数字がそれを証明している。</p>
+      <p>欠けているのは<span class="highlight">「それをどう伝え続けるか（コンテンツ供給網）」</span>の設計。テレビCM・Jリーグ・イベントは「認知」を作れるが、1,227万人の契約者との「日常的な対話」は作れない。この構造課題を解決するのがStoryHubのStory OSである。</p>
+    </div>
+  </section>
+
+  <!-- 09: FIT -->
+  <section id="fit">
+    <div class="sec-num">09</div>
+    <h2 class="sec-title">StoryHubとの接点仮説</h2>
+    <p class="sec-lead">MY Mutual Way II期の実績データに基づく、具体的な接点マッピング</p>
+
+    <table class="fit-table">
+      <thead>
+        <tr>
+          <th>明治安田の資産/課題</th>
+          <th>具体的な数字</th>
+          <th>Story OSの提供価値</th>
+          <th>プロダクト</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>健活キャッシュバック契約者</td>
+          <td>161万件</td>
+          <td>行動変容ストーリーのパーソナライズ配信。「血管年齢改善体験談」「健活で変わった生活」等</td>
+          <td>Feed + Studio</td>
+        </tr>
+        <tr>
+          <td>MYリンクコーディネーター</td>
+          <td>36,964人（満足度72.7%）</td>
+          <td>AIインタビューで成功事例を記事化。研修・採用広報・社内報に展開</td>
+          <td>Interview + Studio</td>
+        </tr>
+        <tr>
+          <td>行動事例収集</td>
+          <td>約20万事例（過去最高）</td>
+          <td>20万事例をAIで構造化・タグ付け。ナレッジベース化して全社共有</td>
+          <td>Studio + Insight</td>
+        </tr>
+        <tr>
+          <td>自治体連携</td>
+          <td>1,078自治体</td>
+          <td>地域別の健活・地元の元気ストーリーを「わがまちインフォ」と連動して配信</td>
+          <td>Feed + Studio</td>
+        </tr>
+        <tr>
+          <td>共創パートナーシップ</td>
+          <td>日清/イオン/弘前大/CVC</td>
+          <td>共創の「裏側」をストーリー化。IR/ESGコンテンツとして統合配信</td>
+          <td>Studio + Assessment</td>
+        </tr>
+        <tr>
+          <td>リブランディング</td>
+          <td>Best Japan Brands Top100</td>
+          <td>ブランドメモリーに「新・明治安田」のトーンを格納。全チャネルで統一性を自動担保</td>
+          <td>Brand Memory</td>
+        </tr>
+        <tr>
+          <td>保険業法コンプライアンス</td>
+          <td>3つのディフェンスライン</td>
+          <td>AIエディターが保険用語・募集文書基準を自動チェック。Assessment連携</td>
+          <td>Assessment</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 10: IMPACT -->
+  <section id="impact">
+    <div class="sec-num">10</div>
+    <h2 class="sec-title">想定インパクトと提案</h2>
+    <p class="sec-lead">他業界の導入実績と明治安田の具体的KPIに紐づけた効果試算</p>
 
     <div class="stat-strip">
       <div class="stat-card"><div class="sv">1/3</div><div class="sl">コンテンツ制作時間<br>の短縮（実績ベース）</div></div>
@@ -347,32 +666,53 @@
       <div class="stat-card"><div class="sv">85%</div><div class="sl">コンテンツ内製化率<br>（0%→85%実績）</div></div>
     </div>
 
+    <h3 class="sub-title">明治安田KPIへの貢献仮説</h3>
+
     <div class="card-grid">
       <div class="g-card">
-        <h4>CX向上効果</h4>
-        <p>契約者アプリへのコンテンツ配信により、アプリ利用頻度が2〜3倍に向上（John Hancock/Vitalityの実績参照）。健活参加率の向上が契約継続率に寄与する好循環を設計。</p>
+        <h4>お客さま数 1,227万→1,240万人</h4>
+        <p>健活コンテンツのデジタル配信で非対面の価値接点を創出。「保険の勧誘」ではなく「健康情報の提供」として新規顧客のファネル上部を拡大。あと13万人のギャップをコンテンツ接点で埋める。</p>
       </div>
       <div class="g-card">
-        <h4>コスト効率</h4>
-        <p>制作時間1/3短縮、内製化率85%により、外注コストを大幅削減。StoryHub導入企業ではROI 2〜3倍を実現。年間数千本のコンテンツを安定供給可能に。</p>
+        <h4>MYリンクコーディネーター満足度</h4>
+        <p>成功事例のナレッジ共有で営業品質の底上げ。「デジタル秘書MYパレット」との連携で、コンテンツを営業ツールとしても活用可能に。72.7%→75%超を目指す。</p>
       </div>
       <div class="g-card">
-        <h4>ブランド価値</h4>
-        <p>ブランドメモリーによる全チャネル統一管理で、「明治安田」ブランドの浸透スピードが加速。保険業法準拠チェックの自動化により、コンプライアンスリスクも低減。</p>
+        <h4>グループ保険料 3.4兆→4.0兆円</h4>
+        <p>Z世代の保険加入動線（HP経由13.3% vs 全体3.8%）に対応するデジタルコンテンツ基盤。コンテンツ→理解→相談→契約の導線を設計。</p>
+      </div>
+    </div>
+
+    <h3 class="sub-title">提案ロードマップ</h3>
+
+    <div class="pillar-grid">
+      <div class="pillar">
+        <h4>Phase 1（3ヶ月）</h4>
+        <p>健活コンテンツPoC。Studio + Brand Memoryで記事10本を制作。制作効率と品質を実証。</p>
+      </div>
+      <div class="pillar gold">
+        <h4>Phase 2（〜6ヶ月）</h4>
+        <p>契約者アプリへのFeed統合。161万件の健康キャッシュバック契約者にパーソナライズ配信を開始。</p>
+      </div>
+      <div class="pillar blue">
+        <h4>Phase 3（〜12ヶ月）</h4>
+        <p>全社コンテンツ基盤化。営業ナレッジ・ESG/IR・採用広報・1,078自治体向けコンテンツを統合。</p>
       </div>
     </div>
 
     <div class="exec-card" style="margin-top:32px;">
       <h3>Conclusion</h3>
-      <p>明治安田の「保険を超える」戦略は、<strong>コンテンツ供給網の構築</strong>によって初めて完成する。StoryHubのStory OSは、健活コンテンツから始めて段階的に全社基盤へ拡張する<span class="highlight">低リスク・高インパクトの導入パス</span>を提供する。</p>
-      <p>まずは「みんなの健活プロジェクト」のコンテンツ制作・配信で6週間のPoCを実施し、<strong>制作効率と契約者エンゲージメントへの効果を実証</strong>することを提案する。</p>
+      <p>MY Mutual Way II期の2024年度実績は、明治安田が<strong>「保険を超える」戦略を着実に実行している</strong>ことを数字で証明している。ESR 216%、基礎利益6,264億円、健活161万件、1,078自治体連携——いずれも強力なファクトである。</p>
+      <p>しかし、これらのファクトは<strong>「CM」「プレスリリース」「イベント」という断片的な発信構造</strong>に留まっている。1,227万人の契約者・36,964人の営業職員・1,078の自治体パートナーに対し、日常的にストーリーを届ける仕組みがない。</p>
+      <p>StoryHubのStory OSは、明治安田の<span class="highlight">「実行力」を「伝わる力」に変換するインフラ</span>として提案する。まずは「みんなの健活プロジェクト」のコンテンツ制作・配信で6週間のPoCを実施し、効果を実証することを推奨する。</p>
     </div>
   </section>
 
 </div>
 
 <footer>
-  <span>StoryHub</span> &mdash; Research Report &mdash; Confidential &mdash; 2026-05
+  <span>StoryHub</span> &mdash; Research Report &mdash; Confidential &mdash; 2026-05<br>
+  <span style="font-size:11px; color:rgba(0,0,0,0.3); margin-top:8px; display:block;">Source: MY Mutual Way II期 2024年度 実施状況のご報告（2025年6月）を基に作成</span>
 </footer>
 
 </body>
