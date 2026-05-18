@@ -10,21 +10,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 <style>
   :root {
-    --ink: #0d1117;
-    --ink-2: #2d3748;
-    --ink-3: #718096;
-    --paper: #f7f8fa;
-    --paper-2: #eef0f4;
-    --paper-3: #dde1e8;
-    --teal: #00a08e;
-    --teal-light: #e6f7f5;
-    --teal-mid: #2dbaa8;
-    --yellow: #fabf00;
-    --yellow-light: #fef9e7;
-    --navy: #1a2744;
-    --rust: #c04a28;
-    --blue: #2563a8;
-    --gold: #a07830;
+    --ink: #0d1117; --ink-2: #2d3748; --ink-3: #718096;
+    --paper: #f7f8fa; --paper-2: #eef0f4; --paper-3: #dde1e8;
+    --teal: #00a08e; --teal-light: #e6f7f5; --teal-mid: #2dbaa8;
+    --yellow: #fabf00; --yellow-light: #fef9e7;
+    --navy: #1a2744; --rust: #c04a28; --blue: #2563a8; --gold: #a07830;
     --rule: rgba(13,17,23,0.08);
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -60,6 +50,7 @@
   .stat-num { font-family: "DM Serif Display", serif; font-size: 38px; color: var(--ink); line-height: 1; margin-bottom: 6px; }
   .stat-label { font-size: 12px; color: var(--ink-3); letter-spacing: 0.04em; }
   .insight-box { background: var(--teal-light); border-left: 3px solid var(--teal); border-radius: 0 4px 4px 0; padding: 20px 24px; font-size: 14px; color: #0a6e61; line-height: 1.8; }
+  .insight-box.rust { background: #fef2f0; border-left-color: var(--rust); color: var(--rust); }
 
   #challenge { background: var(--paper-2); }
   .challenge-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
@@ -68,10 +59,23 @@
   .c-card-title { font-size: 16px; font-weight: 500; color: var(--ink); margin-bottom: 10px; line-height: 1.5; }
   .c-card-body { font-size: 13px; color: var(--ink-2); line-height: 1.8; }
 
-  #value { background: var(--paper); }
+  #benchmark { background: var(--paper); }
+  .bench-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 13px; }
+  .bench-table th, .bench-table td { padding: 12px 14px; text-align: left; border-bottom: 1px solid var(--rule); line-height: 1.5; }
+  .bench-table th { background: var(--navy); color: #fff; font-weight: 700; font-size: 11px; letter-spacing: 0.04em; }
+  .bench-table td:first-child { font-weight: 600; color: var(--navy); }
+  .bench-table .ahead { color: var(--teal); font-weight: 700; }
+  .bench-table .behind { color: var(--rust); font-weight: 700; }
+  .global-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 24px 0; }
+  .gl-card { background: var(--paper-2); border: 1px solid var(--paper-3); border-radius: 4px; padding: 22px 20px; }
+  .gl-card h4 { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .gl-stat { font-family: "DM Serif Display", serif; font-size: 28px; color: var(--teal); line-height: 1; margin-bottom: 6px; }
+  .gl-card p { font-size: 12px; color: var(--ink-3); line-height: 1.6; }
+
+  #value { background: var(--paper-2); }
   .value-list { display: flex; flex-direction: column; gap: 1px; border: 1px solid var(--paper-3); border-radius: 4px; overflow: hidden; }
-  .v-row { display: grid; grid-template-columns: 48px 1fr 1.6fr; background: var(--paper-2); align-items: stretch; transition: background 0.2s; }
-  .v-row:hover { background: var(--paper); }
+  .v-row { display: grid; grid-template-columns: 48px 1fr 1.6fr; background: var(--paper); align-items: stretch; transition: background 0.2s; }
+  .v-row:hover { background: var(--paper-2); }
   .v-num { display: flex; align-items: center; justify-content: center; font-family: "DM Serif Display", serif; font-size: 22px; color: var(--ink-3); border-right: 1px solid var(--paper-3); padding: 24px 0; }
   .v-label { padding: 24px 24px 24px 20px; border-right: 1px solid var(--paper-3); display: flex; flex-direction: column; justify-content: center; }
   .v-tag { font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; }
@@ -85,13 +89,13 @@
   .vo-label { font-size: 11px; color: rgba(247,248,250,0.4); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
   .vo-text { font-size: 13px; color: var(--paper); line-height: 1.6; }
 
-  #quality { background: var(--paper-2); }
+  #quality { background: var(--paper); }
   .quality-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-  .q-card { background: var(--paper); border: 1px solid var(--paper-3); border-left: 3px solid var(--teal); border-radius: 4px; padding: 28px 26px; }
+  .q-card { background: var(--paper-2); border: 1px solid var(--paper-3); border-left: 3px solid var(--teal); border-radius: 4px; padding: 28px 26px; }
   .q-card h4 { font-size: 14px; font-weight: 500; color: var(--navy); margin-bottom: 10px; }
   .q-card p { font-size: 13px; color: var(--ink-2); line-height: 1.8; }
 
-  #poc { background: var(--paper); }
+  #poc { background: var(--paper-2); }
   .poc-timeline { display: grid; grid-template-columns: repeat(5, 1fr); border: 1px solid var(--paper-3); border-radius: 4px; overflow: hidden; margin-bottom: 32px; }
   .poc-step { padding: 22px 18px; background: var(--paper); border-right: 1px solid var(--paper-3); position: relative; }
   .poc-step:last-child { border-right: none; }
@@ -100,18 +104,16 @@
   .poc-desc { font-size: 11px; color: var(--ink-3); line-height: 1.6; }
   .poc-arrow { position: absolute; right: -10px; top: 50%; transform: translateY(-50%); width: 20px; height: 20px; background: var(--paper-3); border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 1; font-size: 10px; color: var(--ink-3); }
   .poc-meta { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
-  .pm-card { background: var(--paper-2); border: 1px solid var(--paper-3); border-radius: 4px; padding: 18px 20px; }
+  .pm-card { background: var(--paper); border: 1px solid var(--paper-3); border-radius: 4px; padding: 18px 20px; }
   .pm-key { font-size: 11px; color: var(--ink-3); margin-bottom: 6px; }
   .pm-val { font-size: 13px; color: var(--ink); line-height: 1.6; font-weight: 500; }
 
-  #roadmap { background: var(--paper-2); }
+  #roadmap { background: var(--paper); }
   .rm-list { display: flex; flex-direction: column; gap: 16px; }
   .rm-row { display: grid; grid-template-columns: 120px 1fr; border: 1px solid var(--paper-3); border-radius: 4px; overflow: hidden; }
-  .rm-phase { background: var(--paper); padding: 22px 20px; border-right: 1px solid var(--paper-3); display: flex; flex-direction: column; justify-content: center; align-items: flex-start; }
+  .rm-phase { background: var(--paper-2); padding: 22px 20px; border-right: 1px solid var(--paper-3); display: flex; flex-direction: column; justify-content: center; align-items: flex-start; }
   .rm-ph-tag { font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; }
-  .rm-ph-tag.p1 { color: var(--teal); }
-  .rm-ph-tag.p2 { color: var(--blue); }
-  .rm-ph-tag.p3 { color: var(--gold); }
+  .rm-ph-tag.p1 { color: var(--teal); } .rm-ph-tag.p2 { color: var(--blue); } .rm-ph-tag.p3 { color: var(--gold); }
   .rm-ph-name { font-size: 14px; font-weight: 500; color: var(--ink); line-height: 1.4; }
   .rm-body { padding: 22px 26px; background: white; }
   .rm-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
@@ -137,15 +139,12 @@
   .footer-meta { font-size: 12px; color: rgba(247,248,250,0.3); text-align: right; }
 
   @media (max-width: 680px) {
-    nav { padding: 0 20px; }
-    .nav-links { display: none; }
-    .container { padding: 0 24px; }
-    .stat-grid, .challenge-grid, .poc-meta, .next-steps, .value-outcome, .quality-grid { grid-template-columns: 1fr; }
+    nav { padding: 0 20px; } .nav-links { display: none; } .container { padding: 0 24px; }
+    .stat-grid, .challenge-grid, .poc-meta, .next-steps, .value-outcome, .quality-grid, .global-cards { grid-template-columns: 1fr; }
     .poc-timeline { grid-template-columns: 1fr; }
-    .v-row { grid-template-columns: 1fr; }
-    .v-num { display: none; }
-    .rm-row { grid-template-columns: 1fr; }
-    .rm-phase { border-right: none; border-bottom: 1px solid var(--paper-3); }
+    .v-row { grid-template-columns: 1fr; } .v-num { display: none; }
+    .rm-row { grid-template-columns: 1fr; } .rm-phase { border-right: none; border-bottom: 1px solid var(--paper-3); }
+    .bench-table { font-size: 11px; }
   }
 </style>
 </head>
@@ -155,9 +154,9 @@
   <div class="nav-links">
     <a href="/">Portal</a>
     <a href="#status">現在地</a>
-    <a href="#challenge">課題</a>
+    <a href="#benchmark">業界比較</a>
     <a href="#value">提供価値</a>
-    <a href="/deck">横長提案書</a>
+    <a href="/research">リサーチ報告書</a>
   </div>
 </nav>
 
@@ -166,12 +165,12 @@
   <div class="hero-meta">StoryHub株式会社<br>2026年5月</div>
   <div class="container">
     <p class="hero-tag">明治安田生命 × StoryHub 提案 LP</p>
-    <h1 class="hero-h1">保険の価値を、<br>ストーリーで<em>届ける。</em></h1>
+    <h1 class="hero-h1">素材は、業界最豊富。<br>足りないのは<em>届ける仕組み。</em></h1>
     <p class="hero-lead">
-      900万人の契約者、3万6千人の営業職員——<br>
-      「みんなの健活」「地元の元気」が生むストーリーを、<br>
-      制作・承認・配信・改善まで一気通貫で管理する<br>
-      「Story OS」をご提案します。
+      健活161万件、1,078自治体連携、36,964人の営業職員——<br>
+      MY Mutual Way II期の実績は強力。しかしその価値を<br>
+      日常的なストーリーとして届ける仕組みがない。<br>
+      「Story OS」がその構造課題を解決します。
     </p>
     <a class="hero-portal" href="/">ポータルに戻る</a>
   </div>
@@ -179,47 +178,54 @@
 
 <div class="divider"></div>
 
+<!-- Chapter 1: 現在地 -->
 <section id="status" class="page">
   <div class="container">
-    <p class="chap">Chapter 1 — 明治安田の現在地</p>
-    <h2 class="s-heading">「保険を超える」宣言の先へ。<br>次の課題は<em>「ストーリー供給網」</em>。</h2>
-    <p class="s-lead">「ひとに健康を、まちに元気を。」——MY Mutual Way 2030のもと、生命保険の機能を超えた価値創造に挑む明治安田。2大プロジェクトは始動済み。次のフェーズの課題は、その取り組みを「伝わるストーリー」として継続的に届ける仕組みです。</p>
+    <p class="chap">Chapter 1 — MY Mutual Way II期の現在地</p>
+    <h2 class="s-heading">戦略の実行力は<em>数字が証明している。</em></h2>
+    <p class="s-lead">「ひとに健康を、まちに元気を。」——2024年度の実績は、明治安田が「保険を超える」戦略を着実に実行していることを示す。</p>
     <div class="stat-grid">
-      <div class="stat-card"><div class="stat-num">900万人</div><div class="stat-label">個人保険・年金の契約者</div></div>
-      <div class="stat-card"><div class="stat-num">36,000人</div><div class="stat-label">MYリンクコーディネーター（営業職員）</div></div>
-      <div class="stat-card"><div class="stat-num">143年</div><div class="stat-label">1881年創業・日本初の生命保険会社</div></div>
+      <div class="stat-card"><div class="stat-num">6,264億円</div><div class="stat-label">グループ基礎利益（目標5,000億円を超過達成）</div></div>
+      <div class="stat-card"><div class="stat-num">1,227万人</div><div class="stat-label">契約者数（目標1,240万人まであと13万人）</div></div>
+      <div class="stat-card"><div class="stat-num">ESR 216%</div><div class="stat-label">健全性指標（目標165%以上を大きく超過）</div></div>
     </div>
-    <div class="insight-box">「みんなの健活プロジェクト」と「地元の元気プロジェクト」——2大プロジェクトの活動は豊富。しかし発信はイベント単位・CM単位に留まり、<strong>継続的なストーリーとして届ける仕組みがない</strong>。Story OSがその基盤になります。</div>
+    <div class="stat-grid">
+      <div class="stat-card"><div class="stat-num">161万件</div><div class="stat-label">健康キャッシュバック累計販売</div></div>
+      <div class="stat-card"><div class="stat-num">1,078</div><div class="stat-label">連携協定締結自治体数</div></div>
+      <div class="stat-card"><div class="stat-num">72.7%</div><div class="stat-label">MYリンクコーディネーター満足度（5年連続最高）</div></div>
+    </div>
+    <div class="insight-box">戦略は明確、実行力も高い。<strong>欠けているのは「それをどう伝え続けるか」の設計</strong>。テレビCM・Jリーグ・イベントは「認知」を作れるが、1,227万人との「日常的な対話」は作れない。</div>
   </div>
 </section>
 
 <div class="divider"></div>
 
+<!-- Chapter 2: 構造課題 -->
 <section id="challenge" class="page">
   <div class="container">
-    <p class="chap">Chapter 2 — 構造的な課題</p>
-    <h2 class="s-heading">活動は豊富。しかし<br><em>ストーリーが届いていない。</em></h2>
-    <p class="s-lead">明治安田は「保険を超える」戦略を明確に掲げ、2大プロジェクトで実行に移しています。しかし、その価値を伝えるコンテンツ基盤には4つの構造課題があります。</p>
+    <p class="chap">Chapter 2 — デジタル接点の構造課題</p>
+    <h2 class="s-heading">メディアもアプリもある。<br>しかし<em>繋がっていない。</em></h2>
+    <p class="s-lead">「ライフフィールドマガジン」（オウンドメディア）と「MYほけんアプリ」（契約者アプリ）——2つのデジタル接点は存在するが、分断している。</p>
     <div class="challenge-grid">
       <div class="c-card">
         <div class="c-card-head">課題 01</div>
-        <div class="c-card-title">契約者接点が「手続き」中心</div>
-        <div class="c-card-body">契約後の接点は「年1回の契約確認」「保険金請求時」が中心。健康増進・ライフプランの情報提供といった価値接点がデジタルで設計されておらず、契約者のエンゲージメントが深まらない構造。</div>
+        <div class="c-card-title">メディアと経営戦略の断絶</div>
+        <div class="c-card-body">ライフフィールドマガジンは良質なコンテンツ（マネー・ヘルス・ライフ）を提供しているが、MY Mutual Way II期の中核である「みんなの健活」「地元の元気」の成果が十分に反映されていない。ワークカテゴリは3本で停滞。</div>
       </div>
       <div class="c-card">
         <div class="c-card-head">課題 02</div>
-        <div class="c-card-title">2大プロジェクトの価値がストーリーとして未到達</div>
-        <div class="c-card-body">「みんなの健活」「地元の元気」の活動は全国で展開されているが、テレビCM・イベント単位の発信に留まる。参加者の変化、地域の声、成果の裏側が連続コンテンツとして可視化されていない。</div>
+        <div class="c-card-title">契約者アプリが「手続きツール」止まり</div>
+        <div class="c-card-body">MYほけんアプリの機能は契約確認・住所変更・担当者連絡。健康管理機能はあるが、コンテンツ配信・パーソナライズは不在。アプリを開く動機が「手続き時」のみで、日常接点になっていない。</div>
       </div>
       <div class="c-card">
         <div class="c-card-head">課題 03</div>
-        <div class="c-card-title">36,000人の営業現場の知見が共有されていない</div>
-        <div class="c-card-body">MYリンクコーディネーターは最大の顧客接点。しかし現場の成功事例・ノウハウが属人的で、採用広報・研修コンテンツ・ブランディングに転換できていない。</div>
+        <div class="c-card-title">36,964人の現場知見が社外に出ていない</div>
+        <div class="c-card-body">MYリンクコーディネーターの顧客満足度は5年連続最高。約20万事例の行動事例も収集済み。しかしこの「最大の顧客接点資産」が採用広報・ブランディングのコンテンツに転換されていない。</div>
       </div>
       <div class="c-card">
         <div class="c-card-head">課題 04</div>
-        <div class="c-card-title">リブランディングの浸透が発展途上</div>
-        <div class="c-card-body">2024年1月に「明治安田生命」から「明治安田」へブランド通称を刷新。三浦知良の起用でCM認知は高いが、「保険を超える明治安田」のストーリーが社内外に浸透する仕組みが不足。</div>
+        <div class="c-card-title">コンテンツ制作体制が未確立</div>
+        <div class="c-card-body">DX戦略ではアクセンチュア提携・AIアシスタント導入と先進的だが、「コンテンツのDX」は空白。第一生命はマガジンハウス+インフォバーン+CDPの制作体制を確立済み。この差は時間と共に拡大する。</div>
       </div>
     </div>
   </div>
@@ -227,51 +233,94 @@
 
 <div class="divider"></div>
 
+<!-- Chapter 3: 業界比較 -->
+<section id="benchmark" class="page">
+  <div class="container">
+    <p class="chap">Chapter 3 — なぜ今、動くべきか</p>
+    <h2 class="s-heading">国内競合は先行し、<br>海外は<em>桁違いの成果</em>を出している。</h2>
+    <p class="s-lead">4大生保の中で明治安田は「素材は最も豊富」だが「コンテンツ供給の仕組み」は最も遅れている。海外先進企業はコンテンツで接触頻度を120倍に引き上げている。</p>
+
+    <table class="bench-table">
+      <thead><tr><th>指標</th><th>第一生命</th><th>住友生命</th><th>日本生命</th><th>明治安田</th></tr></thead>
+      <tbody>
+        <tr><td>オウンドメディア</td><td class="ahead">ミラシル（業界トップ）</td><td>Vitality Times</td><td class="behind">なし</td><td class="behind">LFM（戦略断絶）</td></tr>
+        <tr><td>アプリ×コンテンツ</td><td>ミラシル連携</td><td class="ahead">行動変容設計込み</td><td>ハピネスナビ（2025〜）</td><td class="behind">手続きのみ</td></tr>
+        <tr><td>データ基盤</td><td class="ahead">Treasure Data CDP</td><td>健康×保険データ連動</td><td>LINE×AI推薦</td><td>アクセンチュア提携</td></tr>
+        <tr><td>制作体制</td><td class="ahead">マガジンハウス+インフォバーン</td><td>NODE等</td><td>LINE中心</td><td class="behind">未確立</td></tr>
+        <tr><td>健康増進×コンテンツ</td><td>中</td><td class="ahead">極めて高い</td><td class="behind">低</td><td>高（アプリ内）だが発信弱い</td></tr>
+      </tbody>
+    </table>
+
+    <div class="global-cards">
+      <div class="gl-card">
+        <div class="gl-stat">NPS 16→70</div>
+        <h4>John Hancock Vitality</h4>
+        <p>月20回のアプリ接触（従来比120倍）。10年間のデータが効果を証明。</p>
+      </div>
+      <div class="gl-card">
+        <div class="gl-stat">CPA -53%</div>
+        <h4>Lemonade</h4>
+        <p>コンテンツマーケティングで顧客獲得コスト半減。87%が保険初購入者。</p>
+      </div>
+      <div class="gl-card">
+        <div class="gl-stat">4億人</div>
+        <h4>Ping An Good Doctor</h4>
+        <p>AI×健康コンテンツで「毎日使われる」保険接点を構築。2秒に1件の相談。</p>
+      </div>
+    </div>
+
+    <div class="insight-box rust">日本の4大生保で海外先進事例レベルのコンテンツ戦略を体系的に実装している企業は<strong>まだない</strong>。明治安田がファーストムーバーを取れるのは今だけ。そして明治安田には、他社にはない「素材」がある。</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- Chapter 4: 提供価値 -->
 <section id="value" class="page">
   <div class="container">
-    <p class="chap">Chapter 3 — StoryHubが提供する価値</p>
-    <h2 class="s-heading">Story OS：<em>契約者との対話・現場の知見共有・ブランド浸透</em></h2>
-    <p class="s-lead">StoryHubは既存のシステムを置き換えません。契約者アプリ・営業支援・コーポレートサイトの上位に、横断的なコンテンツ供給基盤（Story OS）を実装します。</p>
+    <p class="chap">Chapter 4 — StoryHubが提供する価値</p>
+    <h2 class="s-heading">Story OS：<em>メディアとアプリを繋ぎ、素材を届ける仕組みに変える</em></h2>
+    <p class="s-lead">StoryHubは既存のシステムを置き換えません。ライフフィールドマガジンの制作基盤を強化し、MYほけんアプリにパーソナライズコンテンツを配信する「Story OS」を実装します。</p>
 
     <div class="value-list">
       <div class="v-row">
         <div class="v-num">1</div>
         <div class="v-label">
-          <div class="v-tag teal">StoryHub Feed</div>
-          <div class="v-title">契約者との「対話」をコンテンツで設計</div>
+          <div class="v-tag teal">Studio + Feed</div>
+          <div class="v-title">LFMを進化させ、MYほけんアプリに配信</div>
         </div>
-        <div class="v-desc">契約者アプリに健康・ライフプラン・資産形成のパーソナライズコンテンツを配信。「手続き接点」を「価値接点」に転換し、アプリ利用頻度とエンゲージメントを向上。</div>
+        <div class="v-desc">ライフフィールドマガジンの制作持続性をStudioで確保（制作時間1/3、本数7倍の実績）。Feedで契約者アプリにパーソナライズ配信を実装し、「手続きツール」を「暮らしのパートナー」に進化させる。</div>
       </div>
       <div class="v-row">
         <div class="v-num">2</div>
         <div class="v-label">
-          <div class="v-tag blue">StoryHub Studio + Interview</div>
-          <div class="v-title">営業現場の知見をAIで記事化・共有</div>
+          <div class="v-tag blue">Interview + Studio</div>
+          <div class="v-title">健活161万件と36,964人の知見をストーリー化</div>
         </div>
-        <div class="v-desc">MYリンクコーディネーターの成功事例・顧客対応ノウハウをAIインタビューで収集し、構造化。研修・採用広報・社内報に展開し、組織学習を加速。</div>
+        <div class="v-desc">健康キャッシュバック契約者の行動変容体験談、MYリンクコーディネーターの成功事例をAIインタビューで収集・記事化。20万事例の行動事例をナレッジベース化し、研修・採用広報・社内報に展開。</div>
       </div>
       <div class="v-row">
         <div class="v-num">3</div>
         <div class="v-label">
           <div class="v-tag gold">Brand Memory + Assessment</div>
-          <div class="v-title">「新しい明治安田」のブランド浸透を加速</div>
+          <div class="v-title">経営戦略とコンテンツの整合性を自動担保</div>
         </div>
-        <div class="v-desc">リブランディング後の統一メッセージをブランドメモリーに格納。全チャネル・全部門のコンテンツが自動的にブランドガイドラインに整合し、保険業法上の表現チェックも統合。</div>
+        <div class="v-desc">MY Mutual Way II期の2大プロジェクト方針をブランドメモリーに格納。LFM・アプリ・営業資料・IR全てのコンテンツが自動的にブランドガイドラインと保険業法基準に整合。戦略とメディアの断絶を構造的に解消。</div>
       </div>
     </div>
 
     <div class="value-outcome">
       <div class="vo-item">
-        <div class="vo-label">CX</div>
-        <div class="vo-text">契約者との接点が「手続き」から「対話」へ進化</div>
+        <div class="vo-label">接触頻度</div>
+        <div class="vo-text">年数回→月複数回<br>（JH Vitalityは月20回を実現）</div>
       </div>
       <div class="vo-item">
-        <div class="vo-label">組織学習</div>
-        <div class="vo-text">36,000人の現場知見がナレッジ資産に転換</div>
+        <div class="vo-label">制作持続性</div>
+        <div class="vo-text">制作時間1/3・本数7x<br>LFMの更新停滞を解消</div>
       </div>
       <div class="vo-item">
-        <div class="vo-label">ブランド</div>
-        <div class="vo-text">「保険を超える明治安田」のストーリーが統一的に浸透</div>
+        <div class="vo-label">戦略整合</div>
+        <div class="vo-text">2大PJの成果がリアルタイムで<br>コンテンツに反映される</div>
       </div>
     </div>
   </div>
@@ -279,9 +328,10 @@
 
 <div class="divider"></div>
 
+<!-- Chapter 5: 品質 -->
 <section id="quality" class="page">
   <div class="container">
-    <p class="chap">Chapter 4 — 品質とコンプライアンス</p>
+    <p class="chap">Chapter 5 — 品質とコンプライアンス</p>
     <h2 class="s-heading">金融業界水準の<em>品質担保</em></h2>
     <p class="s-lead">保険業法・金融商品取引法の制約下で、正確でわかりやすいコンテンツを安定供給する仕組み。</p>
     <div class="quality-grid">
@@ -303,54 +353,55 @@
 
 <div class="divider"></div>
 
+<!-- Chapter 6: PoC -->
 <section id="poc" class="page">
   <div class="container">
-    <p class="chap">Chapter 5 — PoC設計</p>
+    <p class="chap">Chapter 6 — PoC設計</p>
     <h2 class="s-heading">「健活コンテンツ」で<em>6週間トライアル</em></h2>
     <p class="s-lead">「みんなの健活プロジェクト」のコンテンツ制作・配信をPoCの対象とし、契約者エンゲージメントへの効果を実証します。</p>
     <div class="poc-timeline">
       <div class="poc-step">
         <div class="poc-wk">Week 1</div>
         <div class="poc-name">ヒアリング</div>
-        <div class="poc-desc">健活コンテンツの現状フロー・課題を把握</div>
+        <div class="poc-desc">LFM・MYほけんアプリの現状フロー・課題を把握</div>
         <div class="poc-arrow">→</div>
       </div>
       <div class="poc-step">
         <div class="poc-wk">Week 2</div>
         <div class="poc-name">ブランドメモリー構築</div>
-        <div class="poc-desc">明治安田のトーン・表現ルール・保険用語をAIに学習</div>
+        <div class="poc-desc">明治安田のトーン・保険用語・健活方針をAIに学習</div>
         <div class="poc-arrow">→</div>
       </div>
       <div class="poc-step">
         <div class="poc-wk">Week 3-4</div>
         <div class="poc-name">コンテンツ制作</div>
-        <div class="poc-desc">健活記事10本をStoryHub Studioで制作・校閲</div>
+        <div class="poc-desc">健活記事10本をStudioで制作。LFM既存コンテンツとの整合性も検証</div>
         <div class="poc-arrow">→</div>
       </div>
       <div class="poc-step">
         <div class="poc-wk">Week 5</div>
         <div class="poc-name">配信テスト</div>
-        <div class="poc-desc">契約者アプリまたはWebサイトでA/Bテスト配信</div>
+        <div class="poc-desc">LFMとMYほけんアプリの両チャネルでA/Bテスト配信</div>
         <div class="poc-arrow">→</div>
       </div>
       <div class="poc-step">
         <div class="poc-wk">Week 6</div>
         <div class="poc-name">効果測定</div>
-        <div class="poc-desc">閲覧率・滞在時間・健活アクション参加率を分析</div>
+        <div class="poc-desc">閲覧率・滞在時間・健活アクション参加率・NPS変化を分析</div>
       </div>
     </div>
     <div class="poc-meta">
       <div class="pm-card">
         <div class="pm-key">対象コンテンツ</div>
-        <div class="pm-val">健活プロジェクト関連記事 10本</div>
+        <div class="pm-val">健活プロジェクト関連記事 10本<br>（血管年齢改善体験談、健活で変わった生活 等）</div>
       </div>
       <div class="pm-card">
         <div class="pm-key">KPI</div>
-        <div class="pm-val">制作時間1/3短縮、閲覧率・健活参加率向上</div>
+        <div class="pm-val">制作時間1/3短縮<br>アプリ接触頻度の向上<br>健活参加率・NPS変化</div>
       </div>
       <div class="pm-card">
-        <div class="pm-key">期間</div>
-        <div class="pm-val">6週間（キックオフから効果測定まで）</div>
+        <div class="pm-key">ベンチマーク</div>
+        <div class="pm-val">JH Vitality: 月20回接触<br>住友Vitality: 94%意識向上<br>第一ミラシル: 業界PVトップ</div>
       </div>
     </div>
   </div>
@@ -358,9 +409,10 @@
 
 <div class="divider"></div>
 
+<!-- Chapter 7: ロードマップ -->
 <section id="roadmap" class="page">
   <div class="container">
-    <p class="chap">Chapter 6 — ロードマップ</p>
+    <p class="chap">Chapter 7 — ロードマップ</p>
     <h2 class="s-heading">3フェーズで<em>全社コンテンツ基盤</em>へ</h2>
     <div class="rm-list">
       <div class="rm-row">
@@ -369,18 +421,18 @@
           <div class="rm-ph-name">健活コンテンツ<br>PoC</div>
         </div>
         <div class="rm-body">
-          <div class="rm-title">「みんなの健活」コンテンツを高速制作・配信する（3ヶ月）</div>
-          <div class="rm-desc">健康増進コンテンツ（運動・食事・睡眠・メンタル）をStoryHub Studioで制作。ブランドメモリーに明治安田のトーンと保険用語ルールを格納し、品質とスピードの両立を実証。</div>
+          <div class="rm-title">LFM + MYほけんアプリで健活コンテンツの制作・配信を実証する（3ヶ月）</div>
+          <div class="rm-desc">StoryHub Studioで健康増進コンテンツを高速制作。ブランドメモリーに明治安田のトーンと保険用語ルールを格納。LFMの更新持続性とアプリ配信の効果を同時に検証。</div>
         </div>
       </div>
       <div class="rm-row">
         <div class="rm-phase">
           <div class="rm-ph-tag p2">Phase 2</div>
-          <div class="rm-ph-name">契約者アプリ<br>Feed統合</div>
+          <div class="rm-ph-name">パーソナライズ<br>配信</div>
         </div>
         <div class="rm-body">
-          <div class="rm-title">契約者アプリにパーソナライズコンテンツを配信する（〜6ヶ月）</div>
-          <div class="rm-desc">StoryHub Feedを契約者アプリに統合。年齢・ライフステージ・保有契約に基づくセグメント配信を実装し、アプリ利用頻度と契約者満足度の向上を計測。</div>
+          <div class="rm-title">161万人の健活契約者にパーソナライズコンテンツを配信する（〜6ヶ月）</div>
+          <div class="rm-desc">StoryHub FeedをMYほけんアプリに本格統合。年齢・ライフステージ・保有契約・健康データに基づくセグメント配信を実装。アプリ利用頻度の月数回への引き上げを目指す。</div>
         </div>
       </div>
       <div class="rm-row">
@@ -389,8 +441,8 @@
           <div class="rm-ph-name">全社コンテンツ<br>基盤化</div>
         </div>
         <div class="rm-body">
-          <div class="rm-title">営業ナレッジ・ESG/IR・採用広報を統合するStory OSを完成（〜12ヶ月）</div>
-          <div class="rm-desc">営業職員インタビューの自動記事化、ESG・IR情報のストーリー化、採用広報コンテンツの一元管理を追加。全チャネルにブランドメモリーが適用された統合コンテンツ基盤を実現。</div>
+          <div class="rm-title">営業ナレッジ・ESG/IR・1,078自治体コンテンツを統合するStory OSを完成（〜12ヶ月）</div>
+          <div class="rm-desc">MYリンクコーディネーター36,964人の成功事例を自動記事化。ESG・IR情報のストーリー化、1,078自治体向けローカルコンテンツの自動生成を追加。全チャネルにブランドメモリーが適用された統合コンテンツ基盤を実現。</div>
         </div>
       </div>
     </div>
@@ -399,31 +451,32 @@
 
 <div class="divider"></div>
 
+<!-- Closing -->
 <section id="closing" class="page">
   <div class="container">
     <p class="chap">Discussion</p>
-    <p class="closing-q">143年の信頼を、<br>次の世代に<em>ストーリーで届ける。</em></p>
+    <p class="closing-q">素材は揃っている。<br>あとは<em>届ける仕組み</em>だけ。</p>
 
     <div class="q-list">
       <div class="q-item">
         <div class="q-badge">1</div>
         <div>
-          <div class="q-text">「みんなの健活プロジェクト」のコンテンツ制作・配信で、現在最も課題を感じている領域は？</div>
-          <div class="q-hint">制作スピード、品質管理、パーソナライズ、効果測定…どこに重心があるかを確認したいです。</div>
+          <div class="q-text">ライフフィールドマガジンとMYほけんアプリを「繋ぐ」構想は、社内で検討されていますか？</div>
+          <div class="q-hint">メディアとアプリの分断をどう認識しているか、既存の統合計画の有無を確認したいです。</div>
         </div>
       </div>
       <div class="q-item">
         <div class="q-badge">2</div>
         <div>
-          <div class="q-text">契約者アプリの利用頻度向上に向けて、コンテンツ施策として検討されていることは？</div>
-          <div class="q-hint">現在の配信内容、更新頻度、セグメント別の出し分け有無…現状の運用体制を把握させてください。</div>
+          <div class="q-text">「みんなの健活プロジェクト」の成果を、契約者向けコンテンツとして配信する計画はありますか？</div>
+          <div class="q-hint">161万件のキャッシュバック契約者の行動変容データが、最もパワフルなコンテンツ素材になり得ます。</div>
         </div>
       </div>
       <div class="q-item">
         <div class="q-badge">3</div>
         <div>
-          <div class="q-text">リブランディング後の「明治安田」ブランドを、社内外にどのように浸透させていく方針ですか？</div>
-          <div class="q-hint">CM以外のタッチポイント、社内浸透施策、ステークホルダーへの伝え方…コンテンツ戦略全体を理解したいです。</div>
+          <div class="q-text">第一生命のミラシル＋CDP戦略や、住友生命Vitalityのエンゲージメントモデルをどう見ていますか？</div>
+          <div class="q-hint">競合の動きを踏まえた上で、明治安田ならではのコンテンツ戦略の方向性を議論したいです。</div>
         </div>
       </div>
     </div>
