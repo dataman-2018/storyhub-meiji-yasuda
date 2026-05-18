@@ -329,93 +329,49 @@
 <div class="divider"></div>
 
 <!-- Chapter 4.5: Use Case Mockups -->
-<section id="usecase" class="page">
+<section id="usecase" class="page" style="background:var(--paper-2);">
   <div class="container">
     <p class="chap">Use Case — MYほけんアプリ × StoryHub Feed</p>
     <h2 class="s-heading">MYほけんアプリが、<br><em>「暮らしに寄り添うメディア」</em>に進化します。</h2>
     <p class="s-lead">契約者のライフステージや関心に合わせたコンテンツを配信。従業員向け・ステークホルダー向けにも同じ仕組みを展開できます。</p>
 
     <style>
-      .phone-showcase { display: flex; gap: 32px; justify-content: center; align-items: flex-start; margin-top: 16px; }
-      .phone-col { display: flex; flex-direction: column; align-items: center; gap: 10px; }
-      .phone-label { font-size: 13px; font-weight: 700; color: var(--navy); text-align: center; }
-      .phone-label .label-sub { font-size: 12px; font-weight: 400; color: var(--ink-3); display: block; margin-top: 2px; }
-      .phone-frame {
-        width: 240px; height: 480px;
-        border: 3px solid #1a1a1a; border-radius: 32px;
-        background: #fff; overflow: hidden;
-        box-shadow: 0 16px 48px rgba(0,0,0,0.14), inset 0 0 0 1px rgba(0,0,0,0.06);
-        display: flex; flex-direction: column;
-      }
-      .phone-notch { width: 90px; height: 24px; background: #1a1a1a; border-radius: 0 0 16px 16px; margin: 0 auto; flex-shrink: 0; }
-      .phone-header { padding: 10px 16px 8px; flex-shrink: 0; border-bottom: 1px solid #eee; display: flex; align-items: center; justify-content: space-between; }
-      .phone-header .app-name { font-size: 13px; font-weight: 800; color: var(--navy); display: flex; align-items: center; gap: 5px; }
-      .phone-header .app-name .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--teal); }
-      .phone-header .app-avatar { width: 24px; height: 24px; border-radius: 50%; background: var(--teal-light); display: flex; align-items: center; justify-content: center; font-size: 11px; color: var(--teal); font-weight: 700; }
-      .phone-tabs { display: flex; gap: 0; padding: 0 12px; flex-shrink: 0; border-bottom: 1px solid #eee; }
-      .phone-tabs span { font-size: 11px; padding: 7px 10px; color: var(--ink-3); font-weight: 500; border-bottom: 2px solid transparent; cursor: default; }
-      .phone-tabs span.active { color: var(--teal); border-bottom-color: var(--teal); font-weight: 700; }
-      .phone-feed { flex: 1; overflow-y: auto; padding: 10px 12px; display: flex; flex-direction: column; gap: 10px; }
-      .feed-card { border: 1px solid #e8ecf0; border-radius: 12px; padding: 0; background: #fafbfc; overflow: hidden; }
-      .feed-card .feed-img {
-        width: 100%; height: 72px; display: flex; align-items: flex-end; justify-content: flex-start;
-        padding: 8px 10px; font-size: 10px; color: #fff; font-weight: 700;
-        position: relative; line-height: 1.3;
-      }
-      .feed-card .feed-img::after {
-        content: ''; position: absolute; inset: 0;
-        background: linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.55) 100%);
-      }
-      .feed-card .feed-img > span { position: relative; z-index: 1; }
-      .feed-card .feed-body { padding: 10px 12px; }
-      .feed-card .feed-tag {
-        font-size: 9px; font-weight: 700; letter-spacing: 0.03em;
-        padding: 2px 7px; border-radius: 4px; display: inline-block; margin-bottom: 5px;
-      }
-      .feed-card .feed-title { font-size: 12px; font-weight: 700; color: var(--ink); line-height: 1.5; margin-bottom: 4px; }
-      .feed-card .feed-meta { font-size: 10px; color: var(--ink-3); display: flex; align-items: center; gap: 8px; }
-      .feed-card .feed-meta .read-time { color: var(--teal); font-weight: 600; }
-      .seg-health .feed-tag { background: #e6f7f5; color: var(--teal); }
-      .seg-health .feed-tag.life { background: #fef9e7; color: #b8860b; }
-      .seg-health .feed-tag.event { background: #eef4fb; color: var(--blue); }
-      .seg-know .feed-tag { background: #eef4fb; color: var(--blue); }
-      .seg-know .feed-tag.success { background: #e6f7f5; color: var(--teal); }
-      .seg-know .feed-tag.trend { background: #fef9e7; color: #b8860b; }
-      .seg-esg .feed-tag { background: #fef9e7; color: #b8860b; }
-      .seg-esg .feed-tag.ir { background: #eef4fb; color: var(--blue); }
-      .seg-esg .feed-tag.people { background: #e6f7f5; color: var(--teal); }
-      .phone-bottom {
-        padding: 8px 16px 12px; border-top: 1px solid #eee; flex-shrink: 0;
-        display: flex; justify-content: space-around;
-      }
-      .phone-bottom .nav-item { display: flex; flex-direction: column; align-items: center; gap: 2px; }
-      .phone-bottom .nav-item span:first-child { font-size: 16px; }
-      .phone-bottom .nav-item span:last-child { font-size: 9px; color: var(--ink-3); font-weight: 500; }
-      .phone-bottom .nav-item.active span:last-child { color: var(--teal); font-weight: 700; }
-      .phone-bottom .nav-item.active span:first-child { filter: none; }
-      .phone-data-badge {
-        margin-top: 20px; padding: 14px 20px;
-        background: var(--ink); border-radius: 8px;
-        text-align: center; max-width: 800px; margin-left: auto; margin-right: auto;
-      }
-      .phone-data-badge p { font-size: 13px; color: rgba(247,248,250,0.85); line-height: 1.7; }
-      .phone-data-badge .accent { color: var(--teal-mid); font-weight: 700; }
-      /* Gradient image placeholders */
-      .img-health1 { background: linear-gradient(135deg, #00a08e 0%, #2dbaa8 50%, #5ccebe 100%); }
-      .img-health2 { background: linear-gradient(135deg, #1a5e3f 0%, #2d8a64 50%, #5ccebe 100%); }
-      .img-health3 { background: linear-gradient(135deg, #fabf00 0%, #f59e0b 50%, #d97706 100%); }
-      .img-health4 { background: linear-gradient(135deg, #2563a8 0%, #3b82f6 50%, #60a5fa 100%); }
-      .img-know1 { background: linear-gradient(135deg, #1a2744 0%, #2d4a7a 50%, #3b82f6 100%); }
-      .img-know2 { background: linear-gradient(135deg, #00a08e 0%, #059669 50%, #34d399 100%); }
-      .img-know3 { background: linear-gradient(135deg, #6d28d9 0%, #7c3aed 50%, #a78bfa 100%); }
-      .img-know4 { background: linear-gradient(135deg, #b8860b 0%, #d97706 50%, #fbbf24 100%); }
-      .img-esg1 { background: linear-gradient(135deg, #059669 0%, #10b981 50%, #6ee7b7 100%); }
-      .img-esg2 { background: linear-gradient(135deg, #1a2744 0%, #334155 50%, #64748b 100%); }
-      .img-esg3 { background: linear-gradient(135deg, #00a08e 0%, #0891b2 50%, #22d3ee 100%); }
-      .img-esg4 { background: linear-gradient(135deg, #fabf00 0%, #f59e0b 50%, #fbbf24 100%); }
-      @media (max-width: 780px) {
-        .phone-showcase { flex-direction: column; align-items: center; gap: 40px; }
-      }
+      .phone-showcase{display:flex;gap:28px;justify-content:center;align-items:flex-start;margin-top:8px}
+      .phone-col{display:flex;flex-direction:column;align-items:center;gap:8px}
+      .phone-label{font-size:14px;font-weight:700;color:var(--navy);text-align:center}
+      .phone-label .label-sub{font-size:12px;font-weight:400;color:var(--ink-3);display:block;margin-top:3px}
+      .phone-frame{width:220px;height:440px;border:3px solid #1a1a1a;border-radius:28px;background:#fff;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,0.13),inset 0 0 0 1px rgba(0,0,0,0.06);position:relative;display:flex;flex-direction:column}
+      .phone-notch{width:80px;height:22px;background:#1a1a1a;border-radius:0 0 14px 14px;margin:0 auto;flex-shrink:0}
+      .phone-header{padding:8px 14px 6px;flex-shrink:0;border-bottom:1px solid #eee}
+      .phone-header .app-name{font-size:12px;font-weight:800;color:var(--navy);display:flex;align-items:center;gap:4px}
+      .phone-header .app-name .dot{width:6px;height:6px;border-radius:50%;background:var(--teal)}
+      .phone-tabs{display:flex;gap:0;padding:0 10px;flex-shrink:0;border-bottom:1px solid #eee}
+      .phone-tabs span{font-size:10px;padding:5px 8px;color:var(--ink-3);font-weight:500;border-bottom:2px solid transparent;cursor:default}
+      .phone-tabs span.active{color:var(--teal);border-bottom-color:var(--teal);font-weight:700}
+      .phone-feed{flex:1;overflow-y:auto;padding:8px 10px;display:flex;flex-direction:column;gap:8px}
+      .feed-card{border:1px solid #e8ecf0;border-radius:10px;padding:9px 10px;background:#fafbfc}
+      .feed-card .feed-img{width:100%;height:56px;border-radius:6px;margin-bottom:6px;display:flex;align-items:center;justify-content:center;font-size:10px;color:#fff;font-weight:600;background-size:cover;background-position:center;text-shadow:0 1px 4px rgba(0,0,0,0.5);position:relative}
+      .feed-card .feed-img::after{content:'';position:absolute;inset:0;border-radius:6px;background:linear-gradient(180deg,rgba(0,0,0,0.08) 0%,rgba(0,0,0,0.48) 100%)}
+      .feed-card .feed-img>span{position:relative;z-index:1}
+      .feed-card .feed-tag{font-size:9px;font-weight:700;letter-spacing:0.03em;padding:2px 6px;border-radius:4px;display:inline-block;margin-bottom:4px}
+      .feed-card .feed-title{font-size:11px;font-weight:700;color:var(--ink);line-height:1.45;margin-bottom:3px}
+      .feed-card .feed-meta{font-size:9px;color:var(--ink-3)}
+      .seg-health .feed-tag{background:#e6f7f5;color:var(--teal)}
+      .seg-health .feed-tag.life{background:#fef9e7;color:#b8860b}
+      .seg-health .feed-tag.event{background:#eef4fb;color:var(--blue)}
+      .seg-know .feed-tag{background:#eef4fb;color:var(--blue)}
+      .seg-know .feed-tag.success{background:#e6f7f5;color:var(--teal)}
+      .seg-know .feed-tag.trend{background:#fef9e7;color:#b8860b}
+      .seg-esg .feed-tag{background:#fef9e7;color:#b8860b}
+      .seg-esg .feed-tag.ir{background:#eef4fb;color:var(--blue)}
+      .seg-esg .feed-tag.people{background:#e6f7f5;color:var(--teal)}
+      .phone-bottom{padding:6px 14px 10px;border-top:1px solid #eee;flex-shrink:0;display:flex;justify-content:space-around}
+      .phone-bottom span{font-size:9px;color:var(--ink-3);text-align:center;line-height:1.3}
+      .phone-bottom span.active-nav{color:var(--teal);font-weight:700}
+      .phone-data-badge{margin-top:24px;padding:14px 20px;background:var(--ink);border-radius:8px;text-align:center}
+      .phone-data-badge p{font-size:13px;color:rgba(247,248,250,0.85);line-height:1.7}
+      .phone-data-badge .accent{color:var(--teal-mid);font-weight:700}
+      @media(max-width:780px){.phone-showcase{flex-direction:column;align-items:center;gap:36px}}
     </style>
 
     <div class="phone-showcase">
@@ -425,52 +381,39 @@
         <div class="phone-label">契約者向け<span class="label-sub">健活 × ライフプラン</span></div>
         <div class="phone-frame">
           <div class="phone-notch"></div>
-          <div class="phone-header">
-            <div class="app-name"><span class="dot"></span>MY 明治安田</div>
-            <div class="app-avatar">M</div>
-          </div>
-          <div class="phone-tabs">
-            <span class="active">おすすめ</span><span>健活</span><span>マネー</span><span>契約</span>
-          </div>
+          <div class="phone-header"><div class="app-name"><span class="dot"></span>MY 明治安田</div></div>
+          <div class="phone-tabs"><span class="active">おすすめ</span><span>健活</span><span>マネー</span><span>契約</span></div>
           <div class="phone-feed seg-health">
             <div class="feed-card">
-              <div class="feed-img img-health1"><span>血管年齢チェック</span></div>
-              <div class="feed-body">
-                <span class="feed-tag">健活</span>
-                <div class="feed-title">「血管年齢マイナス10歳」を達成した3つの習慣 ── 40代契約者の体験談</div>
-                <div class="feed-meta"><span>2026.05.18</span><span class="read-time">4 min</span></div>
-              </div>
+              <div class="feed-img" style="background-image:url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=200&fit=crop')"><span>血管年齢チェック</span></div>
+              <span class="feed-tag">健活</span>
+              <div class="feed-title">「血管年齢マイナス10歳」を達成した3つの習慣</div>
+              <div class="feed-meta">2026.05.18 ・ 4 min read</div>
             </div>
             <div class="feed-card">
-              <div class="feed-img img-health3"><span>教育資金シミュレーション</span></div>
-              <div class="feed-body">
-                <span class="feed-tag life">ライフプラン</span>
-                <div class="feed-title">子どもの教育費、いつ・いくら準備する？ FP監修シミュレーション</div>
-                <div class="feed-meta"><span>2026.05.16</span><span class="read-time">6 min</span></div>
-              </div>
+              <div class="feed-img" style="background-image:url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&h=200&fit=crop')"><span>教育費シミュレーション</span></div>
+              <span class="feed-tag life">ライフプラン</span>
+              <div class="feed-title">子どもの教育費、いつ・いくら準備する？</div>
+              <div class="feed-meta">2026.05.16 ・ 6 min read</div>
             </div>
             <div class="feed-card">
-              <div class="feed-img img-health2"><span>睡眠スコア改善</span></div>
-              <div class="feed-body">
-                <span class="feed-tag">健活</span>
-                <div class="feed-title">睡眠スコアが20%改善した「寝る前10分ルーティン」── 産業医監修</div>
-                <div class="feed-meta"><span>2026.05.14</span><span class="read-time">3 min</span></div>
-              </div>
+              <div class="feed-img" style="background-image:url('https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=400&h=200&fit=crop')"><span>睡眠スコア改善</span></div>
+              <span class="feed-tag">健活</span>
+              <div class="feed-title">睡眠スコアが20%改善「寝る前10分ルーティン」</div>
+              <div class="feed-meta">2026.05.14 ・ 3 min read</div>
             </div>
             <div class="feed-card">
-              <div class="feed-img img-health4"><span>地元の元気マルシェ</span></div>
-              <div class="feed-body">
-                <span class="feed-tag event">イベント</span>
-                <div class="feed-title">地元の元気マルシェ、6月開催 ── お住まいのエリアの情報をお届け</div>
-                <div class="feed-meta"><span>2026.05.12</span><span class="read-time">2 min</span></div>
-              </div>
+              <div class="feed-img" style="background-image:url('https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=400&h=200&fit=crop')"><span>地元の元気マルシェ</span></div>
+              <span class="feed-tag event">イベント</span>
+              <div class="feed-title">地元の元気マルシェ、6月開催のお知らせ</div>
+              <div class="feed-meta">2026.05.12 ・ 2 min read</div>
             </div>
           </div>
           <div class="phone-bottom">
-            <div class="nav-item active"><span>&#x1f4f0;</span><span>Feed</span></div>
-            <div class="nav-item"><span>&#x1f3c3;</span><span>健活</span></div>
-            <div class="nav-item"><span>&#x1f4c4;</span><span>契約</span></div>
-            <div class="nav-item"><span>&#x1f464;</span><span>My</span></div>
+            <span class="active-nav">&#x1f4f0;<br>Feed</span>
+            <span>&#x1f3c3;<br>健活</span>
+            <span>&#x1f4c4;<br>契約</span>
+            <span>&#x1f464;<br>My</span>
           </div>
         </div>
       </div>
@@ -480,52 +423,39 @@
         <div class="phone-label">従業員向け<span class="label-sub">ナレッジ × 研修</span></div>
         <div class="phone-frame">
           <div class="phone-notch"></div>
-          <div class="phone-header">
-            <div class="app-name"><span class="dot"></span>MY Knowledge</div>
-            <div class="app-avatar">K</div>
-          </div>
-          <div class="phone-tabs">
-            <span class="active">注目</span><span>成功事例</span><span>研修</span><span>トレンド</span>
-          </div>
+          <div class="phone-header"><div class="app-name"><span class="dot"></span>MY Knowledge</div></div>
+          <div class="phone-tabs"><span class="active">注目</span><span>成功事例</span><span>研修</span><span>トレンド</span></div>
           <div class="phone-feed seg-know">
             <div class="feed-card">
-              <div class="feed-img img-know1"><span>Top Performer Interview</span></div>
-              <div class="feed-body">
-                <span class="feed-tag success">成功事例</span>
-                <div class="feed-title">ご家族3世代のご契約をお預かりするまで ── 名古屋支社 MYリンクコーディネーター</div>
-                <div class="feed-meta"><span>2026.05.17</span><span class="read-time">6 min</span></div>
-              </div>
+              <div class="feed-img" style="background-image:url('https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=400&h=200&fit=crop')"><span>Top Performer</span></div>
+              <span class="feed-tag success">成功事例</span>
+              <div class="feed-title">ご家族3世代のご契約をお預かりするまで</div>
+              <div class="feed-meta">2026.05.17 ・ 6 min read</div>
             </div>
             <div class="feed-card">
-              <div class="feed-img img-know2"><span>健活 × 信頼構築</span></div>
-              <div class="feed-body">
-                <span class="feed-tag">ナレッジ</span>
-                <div class="feed-title">「健活」を入口にした信頼構築の5ステップ ── 満足度トップ10%の共通点</div>
-                <div class="feed-meta"><span>2026.05.15</span><span class="read-time">5 min</span></div>
-              </div>
+              <div class="feed-img" style="background-image:url('https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=200&fit=crop')"><span>健活 × 信頼構築</span></div>
+              <span class="feed-tag">ナレッジ</span>
+              <div class="feed-title">「健活」を入口にした信頼構築の5ステップ</div>
+              <div class="feed-meta">2026.05.15 ・ 5 min read</div>
             </div>
             <div class="feed-card">
-              <div class="feed-img img-know3"><span>New Brand Playbook</span></div>
-              <div class="feed-body">
-                <span class="feed-tag">研修</span>
-                <div class="feed-title">「新しい明治安田」ブランドの伝え方 ── お客さま向けトーク事例集</div>
-                <div class="feed-meta"><span>2026.05.13</span><span class="read-time">4 min</span></div>
-              </div>
+              <div class="feed-img" style="background-image:url('https://images.unsplash.com/photo-1557804506-669a67965ba0?w=400&h=200&fit=crop')"><span>Brand Playbook</span></div>
+              <span class="feed-tag">研修</span>
+              <div class="feed-title">「新しい明治安田」ブランドの伝え方</div>
+              <div class="feed-meta">2026.05.13 ・ 4 min read</div>
             </div>
             <div class="feed-card">
-              <div class="feed-img img-know4"><span>Z世代マーケット</span></div>
-              <div class="feed-body">
-                <span class="feed-tag trend">トレンド</span>
-                <div class="feed-title">Z世代の保険加入動機、3つの変化 ── HP経由が全体の3.5倍に</div>
-                <div class="feed-meta"><span>2026.05.11</span><span class="read-time">3 min</span></div>
-              </div>
+              <div class="feed-img" style="background-image:url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=400&h=200&fit=crop')"><span>Z世代マーケット</span></div>
+              <span class="feed-tag trend">トレンド</span>
+              <div class="feed-title">Z世代の保険加入動機、3つの変化</div>
+              <div class="feed-meta">2026.05.11 ・ 3 min read</div>
             </div>
           </div>
           <div class="phone-bottom">
-            <div class="nav-item active"><span>&#x1f4f0;</span><span>Feed</span></div>
-            <div class="nav-item"><span>&#x1f4da;</span><span>研修</span></div>
-            <div class="nav-item"><span>&#x1f4ac;</span><span>相談</span></div>
-            <div class="nav-item"><span>&#x1f464;</span><span>My</span></div>
+            <span class="active-nav">&#x1f4f0;<br>Feed</span>
+            <span>&#x1f4da;<br>研修</span>
+            <span>&#x1f4ac;<br>相談</span>
+            <span>&#x1f464;<br>My</span>
           </div>
         </div>
       </div>
@@ -535,52 +465,39 @@
         <div class="phone-label">ステークホルダー向け<span class="label-sub">ESG × IR ストーリー</span></div>
         <div class="phone-frame">
           <div class="phone-notch"></div>
-          <div class="phone-header">
-            <div class="app-name"><span class="dot"></span>明治安田 IR</div>
-            <div class="app-avatar">IR</div>
-          </div>
-          <div class="phone-tabs">
-            <span class="active">Stories</span><span>ESG</span><span>決算</span><span>共創</span>
-          </div>
+          <div class="phone-header"><div class="app-name"><span class="dot"></span>明治安田 IR</div></div>
+          <div class="phone-tabs"><span class="active">Stories</span><span>ESG</span><span>決算</span><span>共創</span></div>
           <div class="phone-feed seg-esg">
             <div class="feed-card">
-              <div class="feed-img img-esg1"><span>地元の元気 3年間の軌跡</span></div>
-              <div class="feed-body">
-                <span class="feed-tag">ESG</span>
-                <div class="feed-title">1,078自治体との連携が生んだ変化 ── 「地元の元気プロジェクト」3年間の成果</div>
-                <div class="feed-meta"><span>2026.05.18</span><span class="read-time">8 min</span></div>
-              </div>
+              <div class="feed-img" style="background-image:url('https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=400&h=200&fit=crop')"><span>地元の元気 3年の軌跡</span></div>
+              <span class="feed-tag">ESG</span>
+              <div class="feed-title">1,078自治体との連携が生んだ変化</div>
+              <div class="feed-meta">2026.05.18 ・ 8 min read</div>
             </div>
             <div class="feed-card">
-              <div class="feed-img img-esg2"><span>MY Mutual Way II</span></div>
-              <div class="feed-body">
-                <span class="feed-tag ir">IR</span>
-                <div class="feed-title">MY Mutual Way II期 中間振り返り ── 基礎利益6,264億円の背景にあるもの</div>
-                <div class="feed-meta"><span>2026.05.16</span><span class="read-time">10 min</span></div>
-              </div>
+              <div class="feed-img" style="background-image:url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&h=200&fit=crop')"><span>MY Mutual Way II</span></div>
+              <span class="feed-tag ir">IR</span>
+              <div class="feed-title">基礎利益6,264億円の背景にあるもの</div>
+              <div class="feed-meta">2026.05.16 ・ 10 min read</div>
             </div>
             <div class="feed-card">
-              <div class="feed-img img-esg3"><span>QOL共同研究</span></div>
-              <div class="feed-body">
-                <span class="feed-tag people">共創</span>
-                <div class="feed-title">弘前大学×明治安田 QOL共同研究所が描く「健康長寿社会」のビジョン</div>
-                <div class="feed-meta"><span>2026.05.14</span><span class="read-time">7 min</span></div>
-              </div>
+              <div class="feed-img" style="background-image:url('https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=400&h=200&fit=crop')"><span>QOL共同研究</span></div>
+              <span class="feed-tag people">共創</span>
+              <div class="feed-title">弘前大学×明治安田が描く健康長寿社会</div>
+              <div class="feed-meta">2026.05.14 ・ 7 min read</div>
             </div>
             <div class="feed-card">
-              <div class="feed-img img-esg4"><span>健活の社会的インパクト</span></div>
-              <div class="feed-body">
-                <span class="feed-tag">ESG</span>
-                <div class="feed-title">健康意識73.5%向上の先にあるもの ── 健活プロジェクトの社会的インパクト</div>
-                <div class="feed-meta"><span>2026.05.12</span><span class="read-time">6 min</span></div>
-              </div>
+              <div class="feed-img" style="background-image:url('https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=400&h=200&fit=crop')"><span>健活インパクト</span></div>
+              <span class="feed-tag">ESG</span>
+              <div class="feed-title">健康意識73.5%向上の先にあるもの</div>
+              <div class="feed-meta">2026.05.12 ・ 6 min read</div>
             </div>
           </div>
           <div class="phone-bottom">
-            <div class="nav-item active"><span>&#x1f4f0;</span><span>Stories</span></div>
-            <div class="nav-item"><span>&#x1f4ca;</span><span>Data</span></div>
-            <div class="nav-item"><span>&#x1f4c5;</span><span>IR</span></div>
-            <div class="nav-item"><span>&#x1f464;</span><span>My</span></div>
+            <span class="active-nav">&#x1f4f0;<br>Stories</span>
+            <span>&#x1f4ca;<br>Data</span>
+            <span>&#x1f4c5;<br>IR</span>
+            <span>&#x1f464;<br>My</span>
           </div>
         </div>
       </div>
