@@ -60,10 +60,12 @@
   .c-card-body { font-size: 13px; color: var(--ink-2); line-height: 1.8; }
 
   #benchmark { background: var(--paper); }
-  .bench-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 13px; }
-  .bench-table th, .bench-table td { padding: 12px 14px; text-align: left; border-bottom: 1px solid var(--rule); line-height: 1.5; }
+  .bench-table { width: 100%; border-collapse: separate; border-spacing: 0; margin: 24px 0; font-size: 13px; }
+  .bench-table th, .bench-table td { padding: 14px 16px; text-align: left; line-height: 1.5; border-bottom: 1px solid var(--rule); }
   .bench-table th { background: var(--navy); color: #fff; font-weight: 700; font-size: 11px; letter-spacing: 0.04em; }
-  .bench-table td:first-child { font-weight: 600; color: var(--navy); }
+  .bench-table td:first-child { font-weight: 600; color: var(--navy); background: var(--paper-2); min-width: 120px; }
+  .bench-table td:nth-child(2), .bench-table td:nth-child(3), .bench-table td:nth-child(4), .bench-table td:nth-child(5) { border-left: 3px solid var(--paper); }
+  .bench-table td:last-child { background: rgba(0,160,142,0.03); }
   .bench-table .ahead { color: var(--teal); font-weight: 700; }
   .bench-table .behind { color: var(--rust); font-weight: 700; }
   .global-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 24px 0; }
